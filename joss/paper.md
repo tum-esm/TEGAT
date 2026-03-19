@@ -26,8 +26,8 @@ bibliography: paper.bib
 
 # Summary
 
-- Introduce the ThingsBoard Edge Gateway as reusable research software
-- Describe it as a lightweight gateway for scientific sensor networks
+- Introduce the TEG-Gateway as reusable research software
+- Describe it as a lightweight gateway for scientific sensor networks ("The software must have an obvious research application.")
 - Emphasize separation of infrastructure and application logic
 - Highlight controller-agnostic design and reuse across projects
 - Reference validation in a real-world scientific deployment
@@ -60,12 +60,12 @@ bibliography: paper.bib
 
 - The ThingsBoard Edge Gateway provides:
   - A stable and reusable gateway architecture
-  - Clear separation between infrastructure and application logic
-  - Persistent connectivity, buffering, and remote management
-  - Supervision of an external, application-specific controller
+  - (Clear separation between infrastructure and application logic)
+  - (Persistent connectivity, buffering, and remote management)
+  - (Supervision of an external, application-specific controller)
 
 - Broader impact:
-  - Architectural consistency across scientific projects
+  - Architectural consistency across scientific projects (setup thingsboard once, deploy many times)
   - Reuse beyond a single study or funding cycle
 
 # State of the Field
@@ -96,11 +96,10 @@ Alternatives to Thingsboard:
 
 - Two-component architecture:
   - Edge Gateway (this software)
-  - External Edge Controller (project-specific, we provide an example implementation)
-- Good Scaling properties:
-  - Multiple controllers can be supervised by a single gateway
-  - Controllers can be added or removed from the network as needed 
-- Gateway functionality:
+  - Controller Software (project-specific, we provide an example implementation)
+- Good Scaling properties (ThingsBoard):
+  - Controllers can be added or removed from the network as needed
+- TEG-Gateway functionality:
   - MQTT-based communication with ThingsBoard
   - Tiered local buffering of telemetry, logs, and historical data
   - Server-authoritative remote file management and mirroring
@@ -111,16 +110,16 @@ Alternatives to Thingsboard:
   - Automated health monitoring and diagnostic telemetry
   - Graceful handling of network outages and controller failures
 - Controller responsibilities:
-  - Sensor hardware interaction
+  - Sensor/Actuator hardware interaction
   - Data acquisition and processing
-- Gateway runs as a long-lived Python process within a Docker container
 - Controller is managed as a Docker container
-- Architecture supports continuous gateway availability during controller restarts and updates
+- Architecture supports continuous gateway availability, regardless of the state of the controller software
+- Architecture is designed to be robust against crashes, network outages, and other failures
 
 ## Implementation
 
 - Implemented in Python (version 3.12+)
-- Modular code structure separating communication, persistence, and management
+- Modular code structure separating communication, persistence, and operational logic
 - Tiered persistence using specialized SQLite databases for communication, archiving, and logging
 - SQLite-based inter-process communication (IPC) for controller-gateway interaction
 - Docker used for controller isolation
@@ -130,7 +129,7 @@ Alternatives to Thingsboard:
 
 # Research impact statement
 
-- The ThingsBoard Edge Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has enabled reliable data collection from a network of environmental sensors in an urban setting @ACROPOLIS2026.
+- The TEG-Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has enabled reliable data collection from a network of environmental sensors in an urban setting @ACROPOLIS2026.
 - Example implementation @ACROPOLIS-edge
 
 
@@ -148,12 +147,17 @@ Alternatives to Thingsboard:
 
 
 # Author contributions
-
-- Conceptual design of the gateway architecture
-- Implementation of the Edge Gateway software
+PA, FL:
+- Conceptual design of the TEG-gateway software architecture
+- Implementation of the TEG-Gateway software
 - Documentation and user guides
 - Deployment and validation in a real-world sensor network
 - Joint contribution to manuscript preparation
+
+JC:
+- Principal investigator of the ACROPOLIS sensor network 
+
+All authors reviewed the manuscript.
 
 # Acknowledgements
 
@@ -162,4 +166,4 @@ Alternatives to Thingsboard:
 
 # AI usage disclosure
 
-Generative AI tools were used to assist with language refinement, formatting, and editorial support during manuscript preparation, and to generate docstrings and aid documentation of the codebase and online materials. All AI-assisted outputs were reviewed and approved by the authors to ensure accuracy, technical correctness, and integrity.
+Generative AI tools were used to assist with language refinement, formatting, and editorial support during manuscript preparation, and to aid documentation of the codebase and online materials. All AI-assisted outputs were reviewed and approved by the authors to ensure accuracy, technical correctness, and integrity.
