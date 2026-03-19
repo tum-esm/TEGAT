@@ -26,11 +26,22 @@ bibliography: paper.bib
 
 # Summary
 
-- Introduce the TEG-Gateway as reusable research software
+The TEG-Gateway is a lightweight, general-purpose open source software built for managing and monitoring networks of 
+IoT devices. 
+It is built to integrate with the ThingsBoard platform and was designed specifically for operating distributed 
+sensor networks for scientific research. 
+Originally developed for and validated in the ACROPOLIS sensor network, it is network-agnostic and can be used with 
+a wide range of IoT and sensor hardware.
+The TEG-Gateway is designed to be robust against network and power outages, crashes, and other failures, thus reducing 
+the risk of data loss, system downtime, or the need for physical intervention.
+Hardware interfacing logic is delegated to a user-defined controller software which interacts with the TEG-Gateway 
+via a message queue, separating infrastructure and application logic.
+
+~~- Introduce the TEG-Gateway as reusable research software
 - Describe it as a lightweight gateway for scientific sensor networks ("The software must have an obvious research application.")
 - Emphasize separation of infrastructure and application logic
 - Highlight controller-agnostic design and reuse across projects
-- Reference validation in a real-world scientific deployment
+- Reference validation in a real-world scientific deployment~~
 
 # Statement of need
 
