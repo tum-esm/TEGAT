@@ -1,5 +1,5 @@
 ---
-title: 'Fancy Title of the Paper'
+title: 'TEG-Gateway: A Lightweight and Reusable Gateway for Scientific Sensor Networks'
 tags:
   - Gateway
   - Thingsboard
@@ -102,12 +102,13 @@ Alternatives to Thingsboard:
   - Controllers can be added or removed from the network as needed 
 - Gateway functionality:
   - MQTT-based communication with ThingsBoard
-  - Local buffering of telemetry and logs
-  - Remote configuration via shared attributes
+  - Tiered local buffering of telemetry, logs, and historical data
+  - Server-authoritative remote file management and mirroring
   - Remote procedure calls for operational control
-  - Controller-only over-the-air (OTA) updates
+  - Controller-only over-the-air (OTA) updates using Git
   - Rollback to previous controller versions
   - Self-provisioning against ThingsBoard
+  - Automated health monitoring and diagnostic telemetry
   - Graceful handling of network outages and controller failures
 - Controller responsibilities:
   - Sensor hardware interaction
@@ -120,8 +121,10 @@ Alternatives to Thingsboard:
 
 - Implemented in Python (version 3.12+)
 - Modular code structure separating communication, persistence, and management
-- SQLite used for lightweight local persistence
+- Tiered persistence using specialized SQLite databases for communication, archiving, and logging
+- SQLite-based inter-process communication (IPC) for controller-gateway interaction
 - Docker used for controller isolation
+- Git used for versioned controller repository management and OTA updates
 - Static type checking using mypy
 - Documentation generated using Sphinx
 
