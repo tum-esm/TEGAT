@@ -57,6 +57,7 @@ challenges in scaling networks to large numbers of deployed sensors. Sensor netw
 measurements while operating unattended for extended periods of time. At the same time, network connectivity and system 
 power can be intermittent or unreliable.
 Although these challenges vary across deployments, they translate into a common set of infrastructure requirements:
+
 - Reliable bidirectional communication with a central platform
 - Local buffering of data during network outages
 - Remote configuration and maintenance capabilities
