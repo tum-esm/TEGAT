@@ -45,6 +45,42 @@ via a message queue, separating infrastructure and application logic.
 
 # Statement of need
 
+Distributed sensor networks are widely used in scientific research across disciplines. They vary in the number of 
+deployed devices, as well as in the sensor hardware and data acquisition and processing protocols used. Given the large 
+variety of sensor hardware used in these networks, as well as the domain-specific data processing required, no single
+software solution would be suitable for all sensor networks. Thus, custom software is needed for each sensor network's 
+data acquisition and processing needs.
+While such networks vary in their configuration, modern sensor networks face many common challenges:
+Physical access to sensor devices is often limited or costly, either due to inaccessible deployment locations or 
+impractically large numbers of sensors. This can be exacerbated by the need to collect data from distant geographic 
+locations or the need to achieve a high spatial resolution, requiring a larger number of deployed sensor devices.
+Sensor networks also typically require long operational lifetimes, often operating unattended for months or years, all
+while needing to provide gapless, continuous measurements. At the same time, network connectivity and system power can 
+be intermittent or unreliable.
+In aggregate, sensor networks share the following common infrastructure needs:
+- Reliable bidirectional communication with a central platform
+- Local buffering of data during network outages
+- Remote configuration and maintenance capabilities
+- Safe remotely initiated software updates without disrupting measurements
+- Ability to recover from failures without physical intervention
+
+A single reusable "gateway" software solution that addresses these infrastructure needs while staying 
+network-agnostic can significantly reduce the engineering overhead associated with deploying and maintaining new 
+sensor networks. When integrating with such a software platform, the network operator only needs to implement the 
+hardware- and application-specific logic required for their specific sensor network, leaving infrastructure concerns 
+to the gateway software. Furthermore, after such centralized sensor network management software has been set up, 
+subsequent deployments of new sensor networks can then benefit from the same infrastructure, further reducing the 
+complexity and cost of operating new networks.
+
+
+- nr supported devices
+- nr geographic locations
+- nr deployed devices (spatial resolution)
+
+~~To achieve sufficient spatial and temporal resolution, large numbers of sensors are usually deployed~~ 
+~~To achieve both large geographic coverage and sufficient spatial resolution of resulting data, sensor networks require 
+increasingly large numbers of independently deployed devices, increasing the operational complexity of managing and 
+monitoring the network.~~
 - Scientific sensor networks are widely used across disciplines
 - Typical use cases include long-term, continuous measurements
 - Deployments often operate unattended for months or years
