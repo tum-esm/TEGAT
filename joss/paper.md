@@ -45,32 +45,26 @@ via a message queue, separating infrastructure and application logic.
 
 # Statement of need
 
-Distributed sensor networks are widely used in scientific research across disciplines. They vary in the number of 
-deployed devices, as well as in the sensor hardware and data acquisition and processing protocols used. Given the large 
-variety of sensor hardware used in these networks, as well as the domain-specific data processing required, no single
-software solution would be suitable for all sensor networks. Thus, custom software is needed for each sensor network's 
-data acquisition and processing needs.
-While such networks vary in their configuration, modern sensor networks face many common challenges:
-Physical access to sensor devices is often limited or costly, either due to inaccessible deployment locations or 
-impractically large numbers of sensors. This can be exacerbated by the need to collect data from distant geographic 
-locations or the need to achieve a high spatial resolution, requiring a larger number of deployed sensor devices.
-Sensor networks also typically require long operational lifetimes, often operating unattended for months or years, all
-while needing to provide gapless, continuous measurements. At the same time, network connectivity and system power can 
-be intermittent or unreliable.
-In aggregate, sensor networks share the following common infrastructure needs:
+Distributed sensor networks are a critical tool in scientific research and widely used across disciplines, enabling 
+long-term, continuous sensor measurements. While they vary in the sensor hardware, data acquisition and processing 
+protocols used, as well as in the number of deployed devices, such networks often face common infrastructure challenges:
+Physical access to sensor devices is often limited or costly, either due to inaccessible deployment locations or due to 
+challenges in scaling networks to large numbers of deployed sensors. Sensor networks often need to provide continuous
+measurements while operating unattended for extended periods of time. At the same time, network connectivity and system 
+power can be intermittent or unreliable.
+Although these challenges vary across deployments, they translate into a common set of infrastructure requirements:
 - Reliable bidirectional communication with a central platform
 - Local buffering of data during network outages
 - Remote configuration and maintenance capabilities
 - Safe remotely initiated software updates without disrupting measurements
 - Ability to recover from failures without physical intervention
 
-A single reusable "gateway" software solution that addresses these infrastructure needs while staying 
-network-agnostic can significantly reduce the engineering overhead associated with deploying and maintaining new 
-sensor networks. When integrating with such a software platform, the network operator only needs to implement the 
-hardware- and application-specific logic required for their specific sensor network, leaving infrastructure concerns 
-to the gateway software. Furthermore, after such centralized sensor network management software has been set up, 
-subsequent deployments of new sensor networks can then benefit from the same infrastructure, further reducing the 
-complexity and cost of operating new networks.
+A single reusable software that addresses these infrastructure requirements while staying network-agnostic can 
+significantly reduce the engineering overhead associated with deploying and maintaining new sensor networks. 
+Network operators can focus on application-specific logic while building on top of a field-tested software solution. 
+Furthermore, subsequent deployments of new sensor networks can reuse the same infrastructure, further reducing overall
+cost and operational complexity while ensuring architectural consistency across scientific studies.
+
 
 
 - nr supported devices
