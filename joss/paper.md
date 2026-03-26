@@ -67,14 +67,38 @@ Although these challenges vary across deployments, they translate into a common 
 
 The TEG-gateway addresses these infrastructure requirements to significantly reduce the engineering overhead associated 
 with deploying and maintaining sensor networks. This enables network operators to focus on application-specific logic 
-while building on top of field-tested software.
-Furthermore, subsequent deployments of new sensor networks can seemlessly be added to an existing thingsboard server 
-platform, 
-- mention scalability
-- adding devices or adding additional sensor networks seemlessly
+while building on top of field-tested software. TEG-gateway leverages the ThingsBoard IoT platform, a robust open source
+software, which was chosen for its maturity (10+yrs in development) and scalability, supporting large numbers of sensor 
+devices.
+The flexible design of the TEG gateway, combined with the ThingsBoard IoT platform, allows users to configure customized 
+sensor networks or seamlessly integrate additional sensors into existing networks, as well as making it possible to reuse 
+infrastructure across multiple research projects.
 
-Furthermore, since TEG-gateway builds on top of the scalable thingsboard server platform, subsequent deployments of new 
-sensor networks can then reuse this infrastructure at negligible marginal cost.
+It also supports deploying multiple concurrent sensor networks, making it possible to reuse infrastructure across 
+multiple research projects.
+The combination of thingsboard and the TEG-gateway can be reused across multiple different research projects, 
+hardware types and network topologies with minimal marginal overhead.
+
+
+~~- software supports user with deploying any number or type of sensor networks with little overhead
+-> thingsboard scales reliably and is available (open source), 10+yrs development
+
+We chose thingsboard:
+- scalability
+- versatility (hardware agnostic)
+-
+
+
+Once the backend infrastructure is deployed within a research group
+or team, it can easily be re
+
+The flexible design of the TEG gateway, combined with the ThingsBoard IoT platform, allows you to configure customized 
+network setups or seamlessly integrate additional sensors into existing systems, making it possible to reuse infrastructure 
+across multiple research projects.
+
+Additionally, users benefit from the scalability of the ThingsBoard
+platform, which supports large numbers of deployed sensors as well as multiple concurrent sensor networks sharing
+the same backend infrastructure. This further reduces the marginal cost of deploying additional sensors and sensor networks.~~
 
 
 
