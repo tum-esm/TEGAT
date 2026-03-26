@@ -151,7 +151,52 @@ software on the fly.~~
 
 
 ## Software Design and Implementation
+The TEG-Gateway software is written in Python (version 3.12). It follows a modular design, encapsulating independent
+functionality such as logging, database access, or communication via mqtt into separate software modules. During an 
+initial setup phase, communication is established with the ThingsBoard platform using MQTT via TLS, and the device is 
+provisioned in the ThingsBoard platform if needed. After that, the software enters a steady-state main loop which contains 
+the remainder of the software's functionality. Each iteration of the main loop performs one task only. Higher priority
+tasks, such as processing incoming MQTT messages, are executed first. This design ensures operational reliability and efficiency.
+As part of the main loop, the TEG-Gateway provides the following three core features: (1) Remote procedure calls (RPC),
+(2) over-the-air (OTA) updates of the controller software, and (3) remote file management and mirroring.
 
+****** FROM DOCS: https://tum-esm.github.io/teg-gateway/user-guide/index.html ******
+(1) Remote Procedure Calls
+The TEG gateway supports Remote Procedure Calls (RPC) via ThingsBoard’s built-in RPC mechanism. RPCs allow external 
+applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on the TEG gateway and receive 
+immediate feedback.
+
+This mechanism is primarily intended for operational control, diagnostics, and maintenance tasks that must be executed 
+on-demand without direct access to the device.
+
+(2) Remote Software Update
+The Remote Software Update feature allows deploying new versions of the TEG gateway controller software to devices using 
+ThingsBoard’s OTA update mechanism. This enables the rollout of bug fixes, performance improvements, and new features without 
+requiring physical access to deployed hardware.
+
+OTA update packages reference git tags or commit hashes from the controller’s git repository. Once an OTA package is created 
+and assigned to a device or device profile in ThingsBoard, TEG gateway devices automatically receive the update, download the 
+corresponding source code using git, build a Docker image locally if required, and re-deploy the controller software Docker container.
+
+The remote software update mechanism follows a controller-only update model. OTA updates apply exclusively to the TEG gateway 
+controller software and never update or restart the TEG gateway runtime itself. This design ensures that connectivity, 
+telemetry buffering, and management functions remain available throughout the update process.
+
+(3) Remote File Management
+The TEG gateway supports remote file management via ThingsBoard shared attributes. This mechanism allows configuration 
+and system files on the gateway device to be created, updated, monitored, and synchronized in a controlled and traceable way. 
+The approach is designed to be robust against intermittent connectivity and to support both read-only mirroring and file writing.
+
+The remote file management mechanism follows a server-authoritative model. ThingsBoard shared attributes define the desired 
+state of all managed files. The TEG gateway never propagates local file changes upstream, except for mirroring file content 
+and reporting synchronization status.
+*****
+
+
+1. Check for incoming MQTT messages from ThingsBoard and process them accordingly (RPC commands, OTA software updates, etc.)
+2. Check if the controller software's docker container is running and if not, restart it using an exponential backoff
+3. Check if the MQTT connection has been lost and if so, exit the process with a 30s delay
+4. Check if there are buffered logs to be sent to ThingsBoard, if so send them
 
 - TEG-Gateway functionality:
   - MQTT-based communication with ThingsBoard
