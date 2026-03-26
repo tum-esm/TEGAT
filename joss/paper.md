@@ -99,13 +99,33 @@ Alternatives to Thingsboard:
 - Tenta: https://joss.theoj.org/papers/10.21105/joss.07311
 
 
-# Software Design
+# Software Architecture
+The software is based on a three-component architecture:
+- (1) TEG-Gateway (this software)
+- (2) Controller Software (project-specific, user provided, we provide an example implementation)
+- (3) ThingsBoard IoT Platform
 
-- Two-component architecture:
-  - Edge Gateway (this software)
-  - Controller Software (project-specific, we provide an example implementation)
-- Good Scaling properties (ThingsBoard):
-  - Controllers can be added or removed from the network as needed
+This design strictly separates the infrastructure and application logic, and divides responsibilities between all three
+components. Both the TEG-Gateway and the Controller Software are deployed on the same IoT sensor device, with the 
+TEG-Gateway acting as intermediary between the controller software and the ThingsBoard platform. The Gateway (1) is 
+designed to be lightweight and robust/reliable, performing only essential functions like forwarding telemetry to ThingsBoard and
+managing the deployment of the controller software. It communicates with the ThingsBoard platform via a secure MQTT connection.
+The Controller Software (2) is responsible for handling application-specific logic such as controlling actuators and collecting 
+and processing sensor data. It is deployed inside a virtualized container environment and communicates with the TEG-Gateway
+via an intermediary database. 
+This isolates the controller software from the TEG-Gateway to provide better fault tolerance and support continuous gateway 
+availability, regardless of the state of the controller software.
+Finally, the ThingsBoard platform (3) is deployed remotely on an independent server device, and acts as a centralized data 
+storage and network management system. It is built to be highly scalable, both in the number of connected devices and in
+the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
+protocols.
+This 3-component architecture is designed to be robust against crashes, network outages, and other failures while
+maintaining scalability and flexibility. It allows network operators to seemlessly add or remove sensor devices or 
+integrate new sensors into their existing networks and to change and extend their application-specific controller 
+software on the fly.
+
+
+## Software Design and Implementation
 - TEG-Gateway functionality:
   - MQTT-based communication with ThingsBoard
   - Tiered local buffering of telemetry, logs, and historical data
@@ -116,14 +136,8 @@ Alternatives to Thingsboard:
   - Self-provisioning against ThingsBoard
   - Automated health monitoring and diagnostic telemetry
   - Graceful handling of network outages and controller failures
-- Controller responsibilities:
-  - Sensor/Actuator hardware interaction
-  - Data acquisition and processing
-- Controller is managed as a Docker container
-- Architecture supports continuous gateway availability, regardless of the state of the controller software
-- Architecture is designed to be robust against crashes, network outages, and other failures
 
-## Implementation
+- Controller is managed as a Docker container
 
 - Implemented in Python (version 3.12+)
 - Modular code structure separating communication, persistence, and operational logic
