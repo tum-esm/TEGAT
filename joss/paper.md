@@ -108,24 +108,51 @@ The software is based on a three-component architecture:
 This design strictly separates the infrastructure and application logic, and divides responsibilities between all three
 components. Both the TEG-Gateway and the Controller Software are deployed on the same IoT sensor device, with the 
 TEG-Gateway acting as intermediary between the controller software and the ThingsBoard platform. The Gateway (1) is 
-designed to be lightweight and robust/reliable, performing only essential functions like forwarding telemetry to ThingsBoard and
+designed to be lightweight and robust, performing only essential functions like forwarding telemetry to ThingsBoard and
 managing the deployment of the controller software. It communicates with the ThingsBoard platform via a secure MQTT connection.
-The Controller Software (2) is responsible for handling application-specific logic such as controlling actuators and collecting 
-and processing sensor data. It is deployed inside a virtualized container environment and communicates with the TEG-Gateway
-via an intermediary database. 
+The Controller Software (2) is provided by the user and is responsible for handling application-specific logic such as 
+controlling actuators and collecting and processing sensor data. It is deployed inside a virtualized container 
+environment and communicates with the TEG-Gateway via an intermediary database. 
 This isolates the controller software from the TEG-Gateway to provide better fault tolerance and support continuous gateway 
 availability, regardless of the state of the controller software.
-Finally, the ThingsBoard platform (3) is deployed remotely on an independent server device, and acts as a centralized data 
-storage and network management system. It is built to be highly scalable, both in the number of connected devices and in
+Finally, the ThingsBoard platform (3) is deployed remotely and acts as a centralized data storage and network 
+management system. It is built to be highly scalable, both in the number of connected devices and in
 the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
 protocols.
-This 3-component architecture is designed to be robust against crashes, network outages, and other failures while
+This architecture was chosen specifically for maintaining remote control of sensor devices independently of 
+application- or hardware-specific software. By decoupling the TEG-Gateway from the controller software, 
+updates can be deployed independently without compromising the TEG-gateway's operation. 
+In case a newly deployed controller software version fails to start or contains errors, the TEG-gateway remains operational
+and continues to communicate with the ThingsBoard IoT platform. This design ensures that corrective actions, such as 
+reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
+connectivity or requiring on-site intervention.
+
+
+~~This architecture gives the user the flexibility to modify and expand the application-specific controller software all
+while 
+TEG-Gateway ensures reliable communication with the ThingsBoard platform.~~
+
+~~deploying and modifying sensor hardware allows the user to swap out the application-specific controller software independently of the TEG
+This architecture positions the TEG-Gateway to continuously run and provide reliable communication with the ThingsBoard
+platform, while allowing the~~
+~~- architecture (teg gateway)
+  - gateway handles controller deployment
+  - gateway manages the sensor device itself (files, rpc commands..)
+  - gateway is lightweight / guaranteed to run reliably
+  - user gets simplified interface to thingsboard~~
+  
+~~In this architecture, the TEG-gateway abstracts away the complexity of managing the sensor device itself as well as
+integrating with the ThingsBoard platform. For the user implementing the controller software, it provides a simple
+interface and a relia~~
+~~This 3-component architecture is designed to be robust against crashes, network outages, and other failures while
 maintaining scalability and flexibility. It allows network operators to seemlessly add or remove sensor devices or 
 integrate new sensors into their existing networks and to change and extend their application-specific controller 
-software on the fly.
+software on the fly.~~
 
 
 ## Software Design and Implementation
+
+
 - TEG-Gateway functionality:
   - MQTT-based communication with ThingsBoard
   - Tiered local buffering of telemetry, logs, and historical data
