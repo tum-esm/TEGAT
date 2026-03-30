@@ -102,7 +102,7 @@ Alternatives to Thingsboard:
 
 # Software Architecture
 
-![Caption for example figure.\label{fig:architecture}](figures/architecture.png)
+![Overview of the software architecture for on-device (TEG-Gateway, controller) and off premise (ThingsBoard, Git Repository) components. Arrows indicate the flow of data and actions between components. Dashed boxes show local files that are used for configuration, management and file persistence. \label{fig:architecture}](figures/architecture.png)
 
 The software is based on a three-component architecture (see Figure \autoref{fig:architecture}):
 - (1) TEG-Gateway (this software)
