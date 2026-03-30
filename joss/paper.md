@@ -100,7 +100,10 @@ Alternatives to Thingsboard:
 
 
 # Software Architecture
-The software is based on a three-component architecture (see figure 1):
+
+![Caption for example figure.\label{fig:architecture}](figures/architecture.png)
+
+The software is based on a three-component architecture (see Figure \autoref{fig:architecture}):
 - (1) TEG-Gateway (this software)
 - (2) Controller Software (project-specific, user provided, we provide an example implementation)
 - (3) ThingsBoard IoT Platform
