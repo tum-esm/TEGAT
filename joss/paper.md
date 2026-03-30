@@ -159,8 +159,29 @@ the remainder of the software's functionality. Each iteration of the main loop p
 tasks, such as processing incoming MQTT messages, are executed first. This design ensures operational reliability and efficiency.
 As part of the main loop, the TEG-Gateway provides the following three core features: (1) Remote procedure calls (RPC),
 (2) over-the-air (OTA) updates of the controller software, and (3) remote file management and mirroring.
+(1) Remote Procedure Calls enable users to invoke one of several predefined commands on the TEG-Gateway using the RPC 
+mechanism built into the Thingsboard platform. This enables users to remotely reboot the sensor device, restart the controller 
+software, or execute arbitrary scripts on the device. This mechanism is primarily intended for operational control, diagnostics, 
+and maintenance tasks that must be executed on-demand without direct access to the device.
+(2) The OTA update feature allows users to remotely deploy new versions of the controller software to the TEG-Gateway device, for
+example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the controller software
+back to a previous version if needed. This feature leverages the Git version control system to manage the software
+version history: Users can specify a specific commit hash or tag which is then matched against the repository by the
+TAG-Gateway. The TAG-Gateway then checks out the corresponding source code and builds a docker image based on it.
+The TEG-Gateway also provides a mechanism for directly accessing files on the sensor device's file system using the 
+remote file management feature (3). This feature allows users to create, read, and write files on the device by defining 
+shared device attributes using the Thingsboard platform. As Linux systems provide extensive access to operating system
+functionality through files, this feature has a particularly wide range of applications. Typical use cases for this
+feature are managing software configuration files for the controller software and configuring on-device drivers and 
+system daemons such as cron jobs.
+More technical details on the TEG-Gateway's functionality and implementation can be found in the TEG-Gateway documentation [^2].
 
-****** FROM DOCS: https://tum-esm.github.io/teg-gateway/user-guide/index.html ******
+Other:
+- archive + reupload
+- log-buffering
+- graceful shutdown
+
+****** FROM DOCS: https://tum-esm.github.io/teg-gateway/user-guide/ ******
 (1) Remote Procedure Calls
 The TEG gateway supports Remote Procedure Calls (RPC) via ThingsBoard’s built-in RPC mechanism. RPCs allow external 
 applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on the TEG gateway and receive 
@@ -237,7 +258,7 @@ and reporting synchronization status.
 - Paho MQTT Client @paho
 
 [^1]: https://thingsboard.io/
-
+[^2]: https://tum-esm.github.io/teg-gateway/user-guide/
 
 # Author contributions
 PA, FL:
