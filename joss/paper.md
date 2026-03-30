@@ -77,7 +77,8 @@ infrastructure across multiple research projects.
 
 # State of the Field
 
-Main difference to others. We integrate the gateway in the edge device. This allows to deploy single devices at different locations without the need of a on location mist/fog gateway.
+Main difference to others. We integrate the gateway in the edge device. This allows to deploy single devices at different 
+locations without the need of a on location mist/fog gateway.
 
 Open Source:
 Local Gateways:
@@ -148,11 +149,11 @@ the TEG-Gateway attempts to start it using an exponential backoff strategy using
 Besides managing the controller software and forwarding telemetry data, the TEG-Gateway provides the following three 
 core features: (1) Remote procedure calls (RPC), (2) over-the-air (OTA) updates of the controller software, and (3) 
 remote file management.
-(1) Remote Procedure Calls enable users to invoke one of several predefined commands on the TEG-Gateway using the RPC 
+Remote Procedure Calls (1) enable users to invoke one of several predefined commands on the TEG-Gateway using the RPC 
 mechanism built into the Thingsboard platform. This enables users to remotely reboot the sensor device, restart the controller 
 software, or execute arbitrary scripts on the device. This mechanism is primarily intended for operational control, diagnostics, 
 and maintenance tasks that must be executed on-demand without direct access to the device.
-(2) The OTA update feature allows users to remotely deploy new versions of the controller software to the TEG-Gateway device, for
+The OTA update feature (2) allows users to remotely deploy new versions of the controller software to the TEG-Gateway device, for
 example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the controller software
 back to a previous version if needed. This feature leverages the Git version control system to manage the software
 version history: Users can specify a specific commit hash or tag which is then matched against the repository by the
@@ -177,7 +178,8 @@ starting point for developers to copy and modify for their own projects.
 
 # Research impact statement
 
-- The TEG-Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has enabled reliable data collection from a network of environmental sensors in an urban setting @ACROPOLIS2026.
+The TEG-Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has 
+enabled reliable data collection from a network of 20 environmental sensors in an urban setting @ACROPOLIS2026.
 - Example implementation @ACROPOLIS-edge
 
 
@@ -195,7 +197,7 @@ starting point for developers to copy and modify for their own projects.
 [^2]: https://tum-esm.github.io/teg-gateway/user-guide/
 
 # Author contributions
-PA, FL:
+FL, PA:
 - Conceptual design of the TEG-gateway software architecture
 - Implementation of the TEG-Gateway software
 - Documentation and user guides
