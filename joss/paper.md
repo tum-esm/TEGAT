@@ -76,19 +76,62 @@ infrastructure across multiple research projects.
 
 
 # State of the Field
+Other existing solutions already cover a variety of the features provided by the combination of TEG-gateway and ThingsBoard,
+though there are different tradeoffs and limitations to consider with each approach:
+Some solutions implement a semi-distributed architecture, where in addition to a central backend server, an on-site 
+central gateway server collects data from multiple connected sensor devices. Examples include thin-edge.io and ThingsBoard's
+own product Thingsboard Edge. These architectures benefit from sensor network layouts where many sensor devices share a local
+network, such as in large factory or office buildings, but face limitations when sensors are deployed individually in
+remote locations and don't form local networks. Furthermore, since the gateway servers are not designed to be co-deployed
+on the sensor devices themselves, they lack software update (OTA) or remote management capabilities.
+Some subset of our features can be covered with commercial solutions: For example, Amazon's AWS IoT and Microsoft Azure's
+Azure IoT Edge products are IoT cloud-platforms similar to ThingsBoard, and Balena's device OS offers reliable device 
+management and software updates of IoT device fleets similar to TEG-Gateway's OTA and RPC functionality. However, projects
+building on top of such products are dependent on future pricing and future availability of these products, and require
+continuous funding (which is often not possible in scientific research projects).
+Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura 
+and Kapua projects, as well as the linux foundation's fledge and kube edge projects. In both cases, these unfortunately lack
+in some aspects we consider important, such as data visualization dashboards and software maturity.
+TODO: Ivy + bibtex entries
+
 
 Main difference to others. We integrate the gateway in the edge device. This allows to deploy single devices at different 
 locations without the need of a on location mist/fog gateway.
+
+- mist deployments (sensor networks are distributed + usually no OTA functionality)
+   - thin-edge.io
+     - cloud platform: payware only (azure, aws, cumulocity)
+     - fragmented stack: (telemetry forwarding, software mgmt, command execution, cloud forwarding)
+     - no support for software updates/management on "child devices" (iot devices) only reference implementation/plugins
+     - https://thin-edge.github.io/thin-edge.io/understand/typical-iot-agent/#running-thin-edge
+   - Thingsboard Edge
+- commercial deployments (vendor lock in, science favors open source: financing continuously vs project-based)
+   -  aws
+   -  azure
+   -  balena
+
+- other
+  - Eclipse foundation: 
+    - kura: works with kapua (kura great for single sensors!)
+    - kapua much less mature software than thingsboard
+  - ivy: fragile/unstable: ota mechanism relies on tests, no application/infra separation
+  - linux foundation:
+    - fledge: no fleet mgmt, no data visualization
+    - kube edge
+
 
 Open Source:
 Local Gateways:
 - Thingsboard Edge (local gateway, on location server): https://github.com/thingsboard/thingsboard-edge
 - Thin Edge (split edge gateway and light on device): https://thin-edge.io/
+    
 
 Similar architectures:
 - (On Device, Java Virtual Machine) Eclipse Kura: https://www.eclipse.org/kura/
-- Ivy: https://joss.theoj.org/papers/10.21105/joss.08862
-- IoT Fledge (north, south stack, no OTA): https://github.com/fledge-iot/fledge
+  - built with Eclipse Kapua Thingsboard alternative - less mature than Thingsboard. older project
+- Ivy (OTA logic is self-updating with tests): https://joss.theoj.org/papers/10.21105/joss.08862
+- IoT Fledge (north, south stack, no OTA, no fleet mgmt): https://github.com/fledge-iot/fledge
+-  could be used with balena
 
 Commercial:
 - AWS IoT Greengrass (full stack, closed source): https://aws.amazon.com/greengrass/
@@ -96,8 +139,9 @@ Commercial:
 
 Alternatives to Thingsboard:
 - Kube Edge (remote sw management): https://kubeedge.io/en/
-- Belena (Device OS + backend stack): https://www.balena.io/
+- Balena (Device OS + backend stack): https://www.balena.io/
 - Tenta: https://joss.theoj.org/papers/10.21105/joss.07311
+
 
 
 # Software Architecture
