@@ -87,7 +87,7 @@ on the sensor devices themselves, they lack software update (OTA) or remote mana
 Some subset of our features can be covered with commercial solutions: For example, Amazon's AWS IoT and Microsoft Azure's
 Azure IoT Edge products are IoT cloud-platforms similar to ThingsBoard, and Balena's device OS offers reliable device 
 management and software updates of IoT device fleets similar to TEG-Gateway's OTA and RPC functionality. However, projects
-building on top of such products are dependent on future pricing and future availability of these products, and require
+building on top of such products are dependent on future pricing and availability of these products, and require
 continuous funding (which is often not possible in scientific research projects).
 Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura 
 and Kapua projects, as well as the linux foundation's fledge and kube edge projects. In both cases, these unfortunately lack
@@ -163,23 +163,23 @@ Alternatives to Thingsboard:
 
 # Software Architecture
 
-![Overview of the software architecture for on-device (TEG-Gateway, controller) and off premise (ThingsBoard, Git Repository) components. Arrows indicate the flow of data and actions between components. Dashed boxes show local files that are used for configuration, management and file persistence. \label{fig:architecture}](figures/figure1.png)
+![Overview of the software architecture for on-device (TEG-Gateway, controller) and off premise (ThingsBoard, Git Repository) components. Arrows indicate the flow of data and actions between components. Dashed boxes show local files that are used for configuration, management and data persistence. \label{fig:architecture}](figures/figure1.png)
 
 The software is based on a three-component architecture (see Figure \autoref{fig:architecture}):
 - (1) TEG-Gateway (this software)
 - (2) Controller Software (project-specific, user provided, we provide an example implementation)
 - (3) ThingsBoard IoT Platform
 
-This design strictly separates the infrastructure and application logic, and divides responsibilities between all three
-components. Both the TEG-Gateway and the Controller Software are deployed on the same IoT sensor device, with the 
-TEG-Gateway acting as intermediary between the controller software and the ThingsBoard platform. The Gateway (1) is 
-designed to be lightweight and robust, performing only essential functions like forwarding telemetry to ThingsBoard and
-managing the deployment of the controller software. It communicates with the ThingsBoard platform via a secure MQTT connection.
+Both the TEG-Gateway (1) and the Controller Software (2) are deployed on the same IoT sensor device, with the TEG-Gateway 
+acting as intermediary between the controller software and the ThingsBoard platform which runs on a remote server. 
+This design strictly separates the infrastructure and application logic, and divides responsibilities between all three components:
+The TEG-Gateway (1) is designed to be lightweight and robust, performing only essential functions like forwarding telemetry 
+to ThingsBoard and managing the deployment of the controller software. It communicates with the ThingsBoard platform via 
+a secure MQTT connection.
 The Controller Software (2) is provided by the user and is responsible for handling application-specific logic such as 
 controlling actuators and collecting and processing sensor data. It is deployed inside a Docker @merkel2014docker container 
 environment and communicates with the TEG-Gateway via an intermediary database. 
-This isolates the controller software from the TEG-Gateway to provide better fault tolerance and support continuous gateway 
-availability, regardless of the state of the controller software.
+This isolates the controller software from the TEG-Gateway to provide better fault tolerance.
 Finally, the ThingsBoard platform (3) is deployed remotely and acts as a centralized data storage and network 
 management system. It is built to be highly scalable, both in the number of connected devices and in
 the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
@@ -195,18 +195,18 @@ connectivity or requiring on-site intervention.
 
 ## Software Design and Implementation
 The TEG-Gateway software is written in Python (version 3.12). It follows a modular design, encapsulating independent
-functionality such as logging, database access, or communication via mqtt into separate software modules. During an 
+functionality such as logging, database access, or communication via MQTT into separate software modules. During an 
 initial setup phase, communication is established with the ThingsBoard platform using MQTT via TLS, and the device is 
-provisioned in the ThingsBoard platform if needed. After that, the software enters a steady-state main loop which contains 
+provisioned in the ThingsBoard platform if needed. The software subsequently enters a steady-state main loop which contains 
 the remainder of the software's functionality. Each iteration of the main loop performs one task only. Higher priority
 tasks, such as processing incoming MQTT messages, are executed first. This design ensures operational reliability and efficiency.
 The TEG-Gateway receives telemetry data from the controller software via a local sqlite database, which is used to
 buffer messages between the two software components for additional fault tolerance. The TEG-gateway then forwards the 
-telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional redundancy. 
-This data can later be retrieved on-demand through a remote procedure call (RPC), for example to backfill data gaps.
+telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional 
+redundancy (for example to backfill data gaps on-demand).
 The TEG-Gateway also manages the deployment of the controller software by directly interacting with the host system's
 Docker daemon: If the controller software's docker container is not running or has not provided a recent heartbeat, 
-the TEG-Gateway attempts to start it using an exponential backoff strategy using the last known software version.
+the TEG-Gateway attempts to start it using an exponential backoff strategy.
 Besides managing the controller software and forwarding telemetry data, the TEG-Gateway provides the following three 
 core features: (1) Remote procedure calls (RPC), (2) over-the-air (OTA) updates of the controller software, and (3) 
 remote file management.
@@ -241,7 +241,7 @@ starting point for developers to copy and modify for their own projects.
 
 The TEG-Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has 
 enabled reliable data collection from a network of 20 environmental sensors in an urban setting @ACROPOLIS2026. As part
-of this project, @ACROPOLIS-edge serves an example of a successful implementation of the TGE-Gateway in a real world use case.
+of this project, @ACROPOLIS-edge serves an example of a successful implementation of the TEG-Gateway in a real world use case.
 
 
 # Citations
