@@ -91,7 +91,24 @@ building on top of such products are dependent on future pricing and future avai
 continuous funding (which is often not possible in scientific research projects).
 Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura 
 and Kapua projects, as well as the linux foundation's fledge and kube edge projects. In both cases, these unfortunately lack
-in some aspects we consider important, such as data visualization dashboards and software maturity.
+in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the @IvyProject
+only covers basic data forwarding via an MQTT client instead of natively integrating with a fleet management software. 
+Furthermore, it lacks separation between application and infrastructure logic, making OTA updates brittle. For example, 
+any crashes not covered by the test suite may result in permanent downtime requiring on-site fixes.
+
+~~Furthermore,
+it lacks the seperation of application- and infrastructure-specific logic, making its OTA software update mechanism brittle as software 
+updates of application code also update infrastructure code and can lead to downtime if there is a bug in the test-suite 
+included in software updates.~~
+
+~~Finally, the @IvyProject
+covers some features but doesn't natively integrate with a fleet management software like ThingsBoard and lacks the seperation
+of application- and infrastructure-specific logic.~~
+
+Ivy: 
+- no fleet management (RPC commands)
+- fragile/unstable: ota mechanism relies on tests, no application/infra separation
+
 TODO: Ivy + bibtex entries
 
 
@@ -223,8 +240,8 @@ starting point for developers to copy and modify for their own projects.
 # Research impact statement
 
 The TEG-Gateway has been validated in a real-world scientific deployment within the ICOS Cities framework. It has 
-enabled reliable data collection from a network of 20 environmental sensors in an urban setting @ACROPOLIS2026.
-- Example implementation @ACROPOLIS-edge
+enabled reliable data collection from a network of 20 environmental sensors in an urban setting @ACROPOLIS2026. As part
+of this project, @ACROPOLIS-edge serves an example of a successful implementation of the TGE-Gateway in a real world use case.
 
 
 # Citations
@@ -241,7 +258,7 @@ enabled reliable data collection from a network of 20 environmental sensors in a
 [^2]: https://tum-esm.github.io/teg-gateway/user-guide/
 
 # Author contributions
-FL, PA:
+LF, PA:
 - Conceptual design of the TEG-gateway software architecture
 - Implementation of the TEG-Gateway software
 - Documentation and user guides
