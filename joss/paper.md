@@ -144,8 +144,8 @@ and maintenance tasks that must be executed on-demand without direct access to t
 The OTA update feature (2) allows users to remotely deploy new versions of the controller software to the TEG-Gateway device, for
 example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the controller software
 back to a previous version if needed. This feature leverages the Git version control system to manage the software
-version history: Users can specify a specific commit hash or tag which is then matched against the repository by the
-TAG-Gateway. The TAG-Gateway then checks out the corresponding source code and builds a docker image based on it.
+version history: Users can specify a specific commit hash or tag. The TEG-Gateway then builds a docker image based on the 
+corresponding source code.
 The TEG-Gateway also provides a mechanism for directly accessing files on the sensor device's file system using the 
 remote file management feature (3). This feature allows users to create, read, and write files on the device by defining 
 shared device attributes using the Thingsboard platform. As Linux systems provide extensive access to operating system
@@ -156,8 +156,8 @@ More technical details on the TEG-Gateway's functionality and implementation can
 which is built on Sphinx @Sphinx.
 
 To make the TEG-Gateway's source code more robust against potential errors, the TEG-gateway codebase is statically typed.
-Developers can perform local type checks using mypy, which is also deployed as a continuous integration (CI) pipeline on the 
-TEG-Gateway's GitHub repository, ensuring type checking is performed on every pull request.
+Developers can perform local type checks using mypy, which is also deployed as a continuous integration (CI) pipeline using
+GitHub actions.
 To enable integration testing of the system as a whole, a demo application is provided which enables developers to
 quickly deploy a fresh ThingsBoard server instance, the current version of the TEG-Gateway as well as an example 
 implementation of the controller software. This example implementation of the controller software also serves as a 
