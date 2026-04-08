@@ -40,13 +40,6 @@ data loss, system downtime, or the need for physical intervention.
 Application-specific and hardware interfacing logic is delegated to a user-defined controller software which is managed 
 and independently deployed by the TEG-Gateway, thus separating infrastructure and application logic.
 
-
-~~- Introduce the TEG-Gateway as reusable research software
-- Describe it as a lightweight gateway for scientific sensor networks ("The software must have an obvious research application.")
-- Emphasize separation of infrastructure and application logic
-- Highlight controller-agnostic design and reuse across projects
-- Reference validation in a real-world scientific deployment~~
-
 # Statement of need
 
 Distributed sensor networks are a critical tool in scientific research and widely used across disciplines, enabling 
@@ -74,7 +67,6 @@ The flexible design of the TEG gateway, combined with the ThingsBoard IoT platfo
 sensor networks or seamlessly integrate additional sensors into existing networks, as well as making it possible to reuse 
 infrastructure across multiple research projects.
 
-
 # State of the Field
 Other existing solutions already cover a variety of the features provided by the combination of TEG-gateway and ThingsBoard,
 though there are different tradeoffs and limitations to consider with each approach:
@@ -95,71 +87,6 @@ in some aspects we consider important, such as data visualization dashboards and
 only covers basic data forwarding via an MQTT client instead of natively integrating with a fleet management software. 
 Furthermore, it lacks separation between application and infrastructure logic, making OTA updates brittle. For example, 
 any crashes not covered by the test suite may result in permanent downtime requiring on-site fixes.
-
-~~Furthermore,
-it lacks the seperation of application- and infrastructure-specific logic, making its OTA software update mechanism brittle as software 
-updates of application code also update infrastructure code and can lead to downtime if there is a bug in the test-suite 
-included in software updates.~~
-
-~~Finally, the @IvyProject
-covers some features but doesn't natively integrate with a fleet management software like ThingsBoard and lacks the seperation
-of application- and infrastructure-specific logic.~~
-
-Ivy: 
-- no fleet management (RPC commands)
-- fragile/unstable: ota mechanism relies on tests, no application/infra separation
-
-TODO: Ivy + bibtex entries
-
-
-Main difference to others. We integrate the gateway in the edge device. This allows to deploy single devices at different 
-locations without the need of a on location mist/fog gateway.
-
-- mist deployments (sensor networks are distributed + usually no OTA functionality)
-   - thin-edge.io
-     - cloud platform: payware only (azure, aws, cumulocity)
-     - fragmented stack: (telemetry forwarding, software mgmt, command execution, cloud forwarding)
-     - no support for software updates/management on "child devices" (iot devices) only reference implementation/plugins
-     - https://thin-edge.github.io/thin-edge.io/understand/typical-iot-agent/#running-thin-edge
-   - Thingsboard Edge
-- commercial deployments (vendor lock in, science favors open source: financing continuously vs project-based)
-   -  aws
-   -  azure
-   -  balena
-
-- other
-  - Eclipse foundation: 
-    - kura: works with kapua (kura great for single sensors!)
-    - kapua much less mature software than thingsboard
-  - ivy: fragile/unstable: ota mechanism relies on tests, no application/infra separation
-  - linux foundation:
-    - fledge: no fleet mgmt, no data visualization
-    - kube edge
-
-
-Open Source:
-Local Gateways:
-- Thingsboard Edge (local gateway, on location server): https://github.com/thingsboard/thingsboard-edge
-- Thin Edge (split edge gateway and light on device): https://thin-edge.io/
-    
-
-Similar architectures:
-- (On Device, Java Virtual Machine) Eclipse Kura: https://www.eclipse.org/kura/
-  - built with Eclipse Kapua Thingsboard alternative - less mature than Thingsboard. older project
-- Ivy (OTA logic is self-updating with tests): https://joss.theoj.org/papers/10.21105/joss.08862
-- IoT Fledge (north, south stack, no OTA, no fleet mgmt): https://github.com/fledge-iot/fledge
--  could be used with balena
-
-Commercial:
-- AWS IoT Greengrass (full stack, closed source): https://aws.amazon.com/greengrass/
-- Azure IoT Edge (gateway mist): https://azure.microsoft.com/en-us/services/iot-edge/
-
-Alternatives to Thingsboard:
-- Kube Edge (remote sw management): https://kubeedge.io/en/
-- Balena (Device OS + backend stack): https://www.balena.io/
-- Tenta: https://joss.theoj.org/papers/10.21105/joss.07311
-
-
 
 # Software Architecture
 
