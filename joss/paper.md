@@ -174,17 +174,7 @@ in a real world use case.
 
 # Author contributions
 
-LF, PA:
-- Designed the software architecture
-- Implemented the software
-- Wrote documentation and user guides
-- Deployed and validated the software as part of the ACROPOLIS sensor network 
-- Wrote the manuscript
-
-JC:
-- Principal investigator of the ACROPOLIS sensor network 
-
-All authors reviewed the manuscript.
+LF, PA, designed the software architecture, implemented the software, wrote documentation and user guides, deployed and validated the software as part of the ACROPOLIS sensor network, wrote the manuscript. JC is the principal investigator of the ACROPOLIS sensor network. All authors reviewed the manuscript.
 
 # Acknowledgements and funding
 
