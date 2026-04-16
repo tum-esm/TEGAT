@@ -17,6 +17,11 @@ authors:
     equal-contrib: true
     corresponding: true
     affiliation: 1
+  - name: Jia Chen
+    orcid: 0000-0002-6350-6610
+    equal-contrib: false
+    corresponding: false
+    affiliation: 1
 affiliations:
     - name: Environmental Sensing and Modeling, Technical University of Munich (TUM), Munich, Germany
       index: 1
