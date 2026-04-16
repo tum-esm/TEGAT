@@ -100,7 +100,7 @@ any crashes not covered by the test suite may result in permanent downtime requi
 The software is based on a three-component architecture (see \autoref{fig:architecture}):
 
 - (1) TEG-Gateway (this software)
-- (2) Controller Software (project-specific, user provided, we provide an example implementation)
+- (2) Controller Software (user provided)
 - (3) ThingsBoard IoT Platform
 
 Both the TEG-Gateway (1) and the Controller Software (2) are deployed on the same IoT sensor device, with the TEG-Gateway 
