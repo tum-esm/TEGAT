@@ -71,19 +71,19 @@ infrastructure across multiple research projects.
 Other existing solutions already cover a variety of the features provided by the combination of TEG-gateway and ThingsBoard,
 though there are different tradeoffs and limitations to consider with each approach:
 Some solutions implement a semi-distributed architecture, where in addition to a central backend server, an on-site 
-central gateway server collects data from multiple connected sensor devices. Examples include thin-edge.io (CITE) and ThingsBoard's
-own product Thingsboard Edge (CITE). These architectures benefit from sensor network layouts where many sensor devices share a local
+central gateway server collects data from multiple connected sensor devices. Examples include thin-edge.io (@thin-edge) and ThingsBoard's
+own product Thingsboard Edge (@thingsboard-edge). These architectures benefit from sensor network layouts where many sensor devices share a local
 network, such as in large factory or office buildings, but face limitations when sensors are deployed individually in
 remote locations and don't form local networks. Furthermore, since the gateway servers are not designed to be co-deployed
 on the sensor devices themselves, they lack software update (OTA) or remote management capabilities.
-Some subset of our features can be covered with commercial solutions: For example, Amazon's AWS IoT (CITE) and Microsoft
-Azure IoT Edge (CITE) products are IoT cloud-platforms similar to ThingsBoard, and Balena's (CITE) device OS offers reliable device 
+Some subset of our features can be covered with commercial solutions: For example, Amazon's AWS IoT (@AWS-IoT) and Microsoft
+Azure IoT Edge (@Azure-IoT-Edge) products are IoT cloud-platforms similar to ThingsBoard, and Balena's (@Balena) device OS offers reliable device 
 management and software updates of IoT device fleets similar to TEG-Gateway's OTA and RPC functionality. However, projects
 building on top of such products are dependent on future pricing and availability of these products, and require
 continuous funding (which is often not possible in scientific research projects).
-Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura (CITE) 
-and Kapua (CITE) projects, as well as the linux foundation's fledge and kube edge projects. In both cases, these unfortunately lack
-in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (CITE)
+Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura (@EF-kura) 
+and Kapua (@EF-kapua) projects, as well as the linux foundation's fledge (@fledge) and kube edge (@kubeedge) projects. In both cases, these unfortunately lack
+in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025)
 only covers basic data forwarding instead of natively integrating with a fleet management software. 
 Furthermore, it lacks separation between application and infrastructure logic, making software updates brittle. For example, 
 any crashes not covered by the test suite may result in permanent downtime requiring on-site fixes.
@@ -102,7 +102,7 @@ acting as intermediary between the controller software and the ThingsBoard platf
 This design strictly separates the infrastructure and application logic, and divides responsibilities between all three components:
 The TEG-Gateway (1) is designed to be lightweight and robust, performing only essential functions like forwarding telemetry 
 to ThingsBoard and managing the deployment of the controller software. It communicates with the ThingsBoard platform via 
-a secure MQTT (CITE) connection.
+a secure MQTT (@MQTT-spec) connection.
 The Controller Software (2) is provided by the user and is responsible for handling application-specific logic such as 
 controlling actuators and collecting and processing sensor data. It is deployed inside a Docker (@merkel2014docker) container 
 environment and communicates with the TEG-Gateway via an intermediary database. 
@@ -121,13 +121,13 @@ connectivity or requiring on-site intervention.
 
 
 ## Software Design and Implementation
-The TEG-Gateway software is written in Python (CITE version 3.12). It follows a modular design, encapsulating independent
+The TEG-Gateway software is written in Python (@Python). It follows a modular design, encapsulating independent
 functionality such as logging, database access, or communication via MQTT into separate software modules. During an 
 initial setup phase, communication is established with the ThingsBoard platform using MQTT via TLS, and the device is 
 provisioned in the ThingsBoard platform if needed. The software subsequently enters a steady-state main loop which contains 
 the remainder of the software's functionality. Each iteration of the main loop performs one task only. Higher priority
 tasks, such as processing incoming MQTT messages, are executed first. This design ensures operational reliability and efficiency.
-The TEG-Gateway receives telemetry data from the controller software via a local sqlite database (CITE), which is used to
+The TEG-Gateway receives telemetry data from the controller software via a local sqlite database (@SQLite), which is used to
 buffer messages between the two software components for additional fault tolerance. The TEG-gateway then forwards the 
 telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional 
 redundancy (for example to backfill data gaps on-demand).
@@ -143,12 +143,12 @@ software, or execute arbitrary scripts on the device. This mechanism is primaril
 and maintenance tasks that must be executed on-demand without direct access to the device.
 The OTA update feature (2) allows users to remotely deploy new versions of the controller software to the TEG-Gateway device, for
 example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the controller software
-back to a previous version if needed. This feature leverages the Git (CITE) version control system to manage the software
+back to a previous version if needed. This feature leverages the Git (@git) version control system to manage the software
 version history: Users can specify a specific commit hash or tag. The TEG-Gateway then builds a docker image based on the 
 corresponding source code.
 The TEG-Gateway also provides a mechanism for directly accessing files on the sensor device's file system using the 
 remote file management feature (3). This feature allows users to create, read, and write files on the device by defining 
-shared device attributes using the Thingsboard platform. As Linux systems provide extensive access to operating system
+shared device attributes using the Thingsboard platform. As Linux (@LinuxKernel) systems provide extensive access to operating system
 functionality through files, this feature has a particularly wide range of applications. Typical use cases for this
 feature are managing software configuration files for the controller software and configuring on-device drivers and 
 system daemons such as cron jobs.
