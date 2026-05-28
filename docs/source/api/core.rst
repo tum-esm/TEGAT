@@ -1,7 +1,7 @@
 Gateway Runtime
 ===============
 
-This section documents the core runtime components of the TEG Gateway.
+This section documents the core runtime components of the TEGAT project.
 These modules define the application entry point, startup sequence, and initial
 device provisioning.
 

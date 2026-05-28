@@ -1,13 +1,13 @@
 Demo
 ====
 
-This docker-based demo deployment runs a local ThingsBoard instance together with the TEG gateway and a simulated controller.
-It is meant for showcasing the teg-gateway's features in an easy to set up example environment.
+This docker-based demo deployment runs a local ThingsBoard instance together with TEGAT and a simulated controller.
+It is meant for showcasing TEGAT's features in an easy to set up example environment.
 
 What the demo includes
 ----------------------
 - ThingsBoard CE + Postgres
-- TEG gateway container built from this repository
+- The TEGAT container built from this repository
 - Example controller that generates simulated sensor data
 - Optional TLS reverse proxy (nginx) with a self-signed certificate
 - Example thingsboard dashboard for visualizing the simulated sensor data
@@ -75,8 +75,8 @@ Create a local data folder and point the demo to it:
 .. code-block:: bash
 
     cd demo
-    mkdir -p data/teg-gateway
-    echo "TEG_DATA_PATH=$(realpath data/teg-gateway)" >> .env
+    mkdir -p data/tegat
+    echo "TEG_DATA_PATH=$(realpath data/tegat)" >> .env
 
 
 Run the full demo (local ThingsBoard)

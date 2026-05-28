@@ -2,7 +2,7 @@
 Setup
 =====
 
-How to set up the TEG gateway on an IoT device once it has been installed.
+How to set up TEGAT on an IoT device once it has been installed.
 
 Docker
 ------
@@ -61,27 +61,27 @@ Prerequisites
 - Optionally, set the desired hostname in your OS configuration
 
 
-Build the TEG Gateway runner Docker image:
+Build the TEGAT runner Docker image:
 --------------------------------------------------
 .. code-block:: bash
 
     cd scripts
-    ./build_gateway_runner_docker_image.sh # builds the teg-gateway-runner docker image
+    ./build_gateway_runner_docker_image.sh # builds the TEGAT-runner docker image
 
 
-Run TEG Gateway using Docker daemon:
+Run TEGAT using Docker daemon:
 --------------------------------------
 .. code-block:: bash
 
     cd scripts
     ./run_dockerized_gateway.sh # also registers device with ThingsBoard and creates tb_access_token
-    docker logs --tail 50 -f acropolis_edge_gateway # watch live logs
+    docker logs --tail 50 -f tegat # see live logs
 
 
 .. _setup_device_provisioning:
 Device Provisioning
 -------------------
 
-- On first start, the gateway will self‑provision if no access token file exists.
+- On first start, the gateway will self-provision if no access token file exists.
 - By default, the device name will match the host OS hostname (unless overridden via environment variable).
 

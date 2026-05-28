@@ -1,7 +1,7 @@
 Local Data Persistence
 ======================
 
-This section documents the local persistence layer used by the TEG Gateway for
+This section documents the local persistence layer used by TEGAT for
 buffering, archiving, and recovery.
 
 SQLite Abstraction
