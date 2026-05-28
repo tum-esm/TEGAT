@@ -1,11 +1,11 @@
 # Telemetry Edge Gateway (TEGAT)
 
-![GitHub Release](https://img.shields.io/github/v/release/tum-esm/teg-gateway?display_name=tag)
-![GitHub Pre-Release](https://img.shields.io/github/v/release/tum-esm/teg-gateway?include_prereleases&display_name=tag&logo=pre-release&label=pre-release)
+![GitHub Release](https://img.shields.io/github/v/release/tum-esm/tegat?display_name=tag)
+![GitHub Pre-Release](https://img.shields.io/github/v/release/tum-esm/tegat?include_prereleases&display_name=tag&logo=pre-release&label=pre-release)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![mypy](https://github.com/tum-esm/tegat/actions/workflows/test-gateway.yaml/badge.svg)](https://github.com/tum-esm/tegat/actions)
-[![Documentation](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://tum-esm.github.io/teg-gateway/)
+[![Documentation](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://tum-esm.github.io/TEGAT/)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111.svg)](https://doi.org/10.5281/zenodo.11111) -->
 
 ## Overview
@@ -39,7 +39,7 @@ At a high level, the system consists of two cooperating components:
 - **TEGAT (this project)**  
   A long-running Python process that maintains connectivity to ThingsBoard,
   handles communication, persistence, and remote management, and supervises the
-  lifecycle of the controller. The TEG-gateway is designed to remain stable and
+  lifecycle of the controller. TEGAT is designed to remain stable and
   continuously available, even during controller restarts or software updates.
 
 - **Controller Software**  
@@ -54,15 +54,15 @@ remote configuration, and recovery actions remain available at all times, indepe
 A more detailed description of the runtime behavior and interactions between these
 components is available in the documentation:
 
-- [Remote File Management](https://tum-esm.github.io/teg-gateway/user-guide/remote-file-management)
-- [Remote Software Updates](https://tum-esm.github.io/teg-gateway/user-guide/remote-software-update)
-- [Remote Procedure Calls](https://tum-esm.github.io/teg-gateway/user-guide/remote-procedure-calls)
+- [Remote File Management](https://tum-esm.github.io/TEGAT/user-guide/remote-file-management)
+- [Remote Software Updates](https://tum-esm.github.io/TEGAT/user-guide/remote-software-update)
+- [Remote Procedure Calls](https://tum-esm.github.io/TEGAT/user-guide/remote-procedure-calls)
 
 
 ## Development and Type Checking
 
 Production-level setup and installation steps are described in the
-[Installation Guide](https://tum-esm.github.io/teg-gateway/getting-started).  
+[Installation Guide](https://tum-esm.github.io/TEGAT/getting-started).  
 The following steps are intended for local development.
 
 Install development dependencies:
@@ -83,7 +83,7 @@ bash scripts/run_mypy.sh
 
 ## Context and Origin
 
-The TEG Gateway was originally developed as part of the
+TEGAT ( _Telemetry Edge GATeway_ ) was originally developed as part of the
 [**ACROPOLIS** CO₂ sensor network](https://amt.copernicus.org/articles/19/745/2026/) within the ICOS Cities framework. 
 It is used as the communication and management layer for the
 [ACROPOLIS-edge](https://github.com/tum-esm/ACROPOLIS-edge) controller software and the associated urban measurement network.

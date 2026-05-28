@@ -110,11 +110,11 @@ sudo cp default.script /usr/share/udhcpc/
 sudo chmod -R 0777 /usr/share/udhcpc/
 ```
 
-### **Create the teg-gateway folder**
+### **Create the TEGAT folder**
 
 ```bash
 sudo mkdir -p /home/pi/tegat/
-git clone https://github.com/tum-esm/tegat.git ./teg-gateway
+git clone https://github.com/tum-esm/tegat.git ./tegat
 sudo git config --system --add safe.directory '*'
 cd /home/pi/tegat/setup/RPi-edge-client
 sudo cp network_lost_reboot_trigger.sh /home/pi/tegat/
@@ -187,7 +187,7 @@ Remove SD Card and insert into personal computer
 ```bash
 diskutil list
 diskutil umountDisk /dev/disk[*]
-dd status=progress bs=4M  if=/dev/disk[*] | gzip > //Users/.../acropolis-edge-image.gz
+dd status=progress bs=4M  if=/dev/disk[*] | gzip > //Users/.../tegat-image.gz
 ```
 
 ## 9. Fast Setup for additional systems
@@ -199,7 +199,7 @@ Insert fresh SD Card into personal computer
 ```bash
 diskutil list
 diskutil umountDisk /dev/disk[*]
-gzip -dc //Users/.../teg-gateway-image.gz | sudo dd of=/dev/disk[*] bs=4M status=progres
+gzip -dc //Users/.../tegat-image.gz | sudo dd of=/dev/disk[*] bs=4M status=progres
 ```
 
 Remove SD Card and insert into RaspberryPi
