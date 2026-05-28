@@ -74,7 +74,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;Command-line argument parsing for the Edge Gateway.</span>
 
 <span class="sd">This module defines the command-line interface (CLI) arguments supported by the</span>
-<span class="sd">TEGAT entry point. Parsed arguments are used to override</span>
+<span class="sd">TEG Gateway entry point. Parsed arguments are used to override</span>
 <span class="sd">runtime configuration such as the ThingsBoard host and port.</span>
 
 <span class="sd">The CLI is intentionally minimal and primarily intended for local testing,</span>
@@ -92,7 +92,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">      Parsed command-line arguments as an :class:`argparse.Namespace`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;TEGAT&#39;</span><span class="p">,</span> <span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;TEG Gateway&#39;</span><span class="p">,</span> <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--tb-host&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;ThingsBoard host address (hostname or IP)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TB_HOST&quot;</span><span class="p">),)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--tb-port&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;ThingsBoard server port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TB_PORT&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
