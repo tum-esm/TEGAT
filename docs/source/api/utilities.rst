@@ -1,7 +1,7 @@
 Utilities
 =========
 
-This section documents utility and support modules used across the TEG project.
+This section documents utility and support modules used across the TEGAT project.
 These modules provide configuration, logging, and defensive helper functions.
 
 
