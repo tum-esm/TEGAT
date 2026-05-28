@@ -49,7 +49,7 @@ You can download the latest release of TEGAT from the GitHub repository:
 .. code-block:: bash
 
     cd $HOME
-    git clone https://github.com/tum-esm/TEGAT.git
+    git clone https://github.com/tum-esm/tegat.git
 
 
 
