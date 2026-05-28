@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'teg-gateway'
+project = 'TEGAT'
 copyright = '2025, Aigner Patrick, Frölich Lars'
 author = 'Aigner Patrick, Frölich Lars'
 release = '0.1'
