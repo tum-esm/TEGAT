@@ -5,7 +5,7 @@ services:
     volumes:
       - demo-controller-git-data:/git_repo
     entrypoint: "/bin/sh"
-    command: "-c 'git -C \"/git_repo\" fetch -v || git clone -v https://github.com/tum-esm/teg-gateway.git /git_repo'"
+    command: "-c 'git -C \"/git_repo\" fetch -v || git clone -v https://github.com/tum-esm/tegat.git /git_repo'"
 
   tb-postgres:
     restart: unless-stopped

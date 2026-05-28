@@ -22,6 +22,6 @@ else
     echo "Dependencies installed from local cache"
 fi
 
-echo "Running the gateway"
+echo "Running TEGAT"
 echo "Args: $args"
 python -u src/main.py $args

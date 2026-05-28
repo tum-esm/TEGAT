@@ -4,7 +4,7 @@ services:
     image: alpine/git
     volumes:
       - demo-controller-git-data:/git_repo
-    command: "-C \"/git_repo\" fetch -v || clone -v https://github.com/tum-esm/teg-gateway.git /git_repo"
+    command: "-C \"/git_repo\" fetch -v || clone -v https://github.com/tum-esm/tegat.git /git_repo"
 
   gateway:
     tty: true

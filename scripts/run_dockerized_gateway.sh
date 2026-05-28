@@ -1,12 +1,12 @@
-docker container stop teg-gateway-runner
+docker container stop tegat
 docker container prune -f
 docker run -d \
  --restart unless-stopped \
  --privileged \
  -v /:/host \
  --net=host --pid=host --ipc=host \
- --name teg-gateway-runner \
+ --name tegat \
  --env-file ../.env \
- teg-gateway-runner:latest
+ tegat-runner:latest
 
 
