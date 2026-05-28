@@ -2,26 +2,26 @@
 Remote File Management
 ======================
 
-The TEG gateway supports remote file management via ThingsBoard shared attributes. This mechanism allows configuration and system files on the gateway device to be created, updated, monitored, and synchronized in a controlled and traceable way. The approach is designed to be robust against intermittent connectivity and to support both read-only mirroring and file writing.
+TEGAT supports remote file management via ThingsBoard shared attributes. This mechanism allows configuration and system files on the gateway device to be created, updated, monitored, and synchronized in a controlled and traceable way. The approach is designed to be robust against intermittent connectivity and to support both read-only mirroring and file writing.
 
-The remote file management mechanism follows a *server-authoritative* model. ThingsBoard shared attributes define the desired state of all managed files. The TEG gateway never propagates local file changes upstream, except for mirroring file content and reporting synchronization status.
+The remote file management mechanism follows a *server-authoritative* model. ThingsBoard shared attributes define the desired state of all managed files. TEGAT never propagates local file changes upstream, except for mirroring file content and reporting synchronization status.
 
 
 Shared Attributes
 -----------------
 
-Shared attributes are used to push file metadata and file content from ThingsBoard to the TEG gateway. The central element is the ``FILES`` attribute, which defines which files are managed and how they should be handled. Actual file content is transferred separately using dedicated attributes.
+Shared attributes are used to push file metadata and file content from ThingsBoard to TEGAT. The central element is the ``FILES`` attribute, which defines which files are managed and how they should be handled. Actual file content is transferred separately using dedicated attributes.
 
 
 Initialize the ``FILES`` Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``FILES`` attribute is a JSON object containing metadata entries for each managed file. Each entry defines the target path on the TEG gateway, the encoding used for file transfer, and optional behavior flags.
+The ``FILES`` attribute is a JSON object containing metadata entries for each managed file. Each entry defines the target path on TEGAT, the encoding used for file transfer, and optional behavior flags.
 
 Supported metadata fields:
 
 - ``path``  
-  Target location on the TEG gateway filesystem. Can be absolute or relative. Locally defined environment variables such as ``$DATA_PATH`` are expanded at runtime.
+  Target location on the TEGAT filesystem. Can be absolute or relative. Locally defined environment variables such as ``$DATA_PATH`` are expanded at runtime.
 
 - ``encoding``  
   Encoding used when transferring file content. Supported values are ``text``, ``json``, and ``base64``. Base64 is recommended for files containing line breaks or special characters.
@@ -30,7 +30,7 @@ Supported metadata fields:
   Monotonically increasing version number used to ensure that the latest file version is applied after temporary disconnections.
 
 - ``restart_controller_on_change`` (optional)  
-  Boolean flag indicating whether the controller software should be restarted after a successful file update. Only the managed controller is restarted when this flag is set. The TEG gateway process itself continues running and is not restarted.
+  Boolean flag indicating whether the controller software should be restarted after a successful file update. Only the managed controller is restarted when this flag is set. The TEGAT process itself continues running and is not restarted.
 
 Example: Managing a controller configuration file and the system crontab
 
@@ -50,14 +50,14 @@ Example: Managing a controller configuration file and the system crontab
         }
     }
 
-When a new entry is added to the ``FILES`` attribute, the TEG gateway evaluates whether a corresponding ``FILE_CONTENT_<file_key>`` attribute exists.
+When a new entry is added to the ``FILES`` attribute, TEGAT evaluates whether a corresponding ``FILE_CONTENT_<file_key>`` attribute exists.
 
 - If file content is available, the file is created or updated accordingly.
 - If no file content attribute exists, the file is treated as read-only and its current content is mirrored back to ThingsBoard.
 
-Read-only mirroring is intended for observability and auditing of files that are not actively managed by the TEG gateway, for example log files, system files or configuration files modified by other services.
+Read-only mirroring is intended for observability and auditing of files that are not actively managed by TEGAT, for example log files, system files or configuration files modified by other services.
 
-In both cases, the TEG gateway creates a client attribute named ``FILE_READ_<file_key>`` containing the latest local file content which can be accessed in ThingsBoard and included in Dashboards.
+In both cases, TEGAT creates a client attribute named ``FILE_READ_<file_key>`` containing the latest local file content which can be accessed in ThingsBoard and included in Dashboards.
 
 
 Populate ``FILE_CONTENT_<file_key>`` Attributes
@@ -77,7 +77,7 @@ To manage the controller configuration, a shared attribute ``FILE_CONTENT_contro
         "setting2": "value2"
     }
 
-After applying the update, the TEG gateway mirrors the current file content into the client attribute ``FILE_READ_controller_config``.
+After applying the update, TEGAT mirrors the current file content into the client attribute ``FILE_READ_controller_config``.
 
 
 Use case: Update the system crontab
@@ -89,7 +89,7 @@ System-level files such as the OS crontab can be managed in the same way. In thi
 
     U0hFTEw9L2Jpbi9iYXNoClBBVEg9L3Vzci9sb2NhbC9zYmluOi91c3IvbG9jYWwvYmluOi91c3IvbG9jYWwvYmluOi91c3Ivc2JpbjovdXNyL2Jpbjovc2JpbjovYmluCkhPTUU9L3Jvb3QKCiMgRG9ja2VyCkBkYWlseSBkb2NrZXIgc3lzdGVtIHBydW5lIC1hIC0tZm9yY2UgLS1maWx0ZXIgInVudGlsPTg3NjBoIgoKIyBEZWxldGUgb2xkIGxvZyBmaWxlcyAob2xkZXIgdGhhbiAxMDAgZGF5cykKQGRhaWx5IC91c3IvYmluL2ZpbmQgL2hvbWUvcGkvY29udHJvbGxlci9sb2dzLyAtdHlwZSBmIC1tdGltZSArMTAwIC1kZWxldGUK
 
-After the update is applied, the TEG gateway mirrors the current crontab content encoded as ``base64`` into the client attribute ``FILE_READ_crontab``.
+After the update is applied, TEGAT mirrors the current crontab content encoded as ``base64`` into the client attribute ``FILE_READ_crontab``.
 
 Client Attributes
 -----------------
@@ -105,17 +105,17 @@ For each file defined in the ``FILES`` attribute:
 File Hashes and Synchronization
 -------------------------------
 
-The ``FILE_HASHES`` attribute is used to ensure consistency between ThingsBoard and the TEG gateway.
+The ``FILE_HASHES`` attribute is used to ensure consistency between ThingsBoard and TEGAT.
 
-The TEG gateway periodically computes a hash for each managed local file and compares it against the corresponding entry in ``FILE_HASHES``. Each entry includes both the hash and the associated ``write_version``.
+TEGAT periodically computes a hash for each managed local file and compares it against the corresponding entry in ``FILE_HASHES``. Each entry includes both the hash and the associated ``write_version``.
 
 If a mismatch is detected:
 
-- The TEG gateway requests the latest content from ``FILE_CONTENT_<file_key>``.
+- TEGAT requests the latest content from ``FILE_CONTENT_<file_key>``.
 - If the shared attribute is missing or empty, no action is taken.
-- If a managed file was modified locally, the detected hash mismatch causes the TEG gateway to re-apply the remote file content, restoring the desired state defined in ThingsBoard.
+- If a managed file was modified locally, the detected hash mismatch causes TEGAT to re-apply the remote file content, restoring the desired state defined in ThingsBoard.
 
-If a file update fails, for example due to invalid encoding, insufficient permissions, or temporary I/O errors, the TEG gateway logs the error locally and does not update the corresponding hash entry. This allows the issue to be diagnosed and retried without leaving the system in an inconsistent state.
+If a file update fails, for example due to invalid encoding, insufficient permissions, or temporary I/O errors, TEGAT logs the error locally and does not update the corresponding hash entry. This allows the issue to be diagnosed and retried without leaving the system in an inconsistent state.
 
 Example: ``FILE_HASHES`` client attribute
 

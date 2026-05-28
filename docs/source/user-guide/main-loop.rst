@@ -1,13 +1,13 @@
 Main Loop
 =========
 
-This page explains how the TEG Gateway operates once it is running,
+This page explains how TEGAT operates once it is running,
 from startup through normal operation and shutdown.
 
 Overview
 --------
 
-After startup, the TEG Gateway runs continuously and coordinates all interaction
+After startup, TEGAT runs continuously and coordinates all interaction
 between the local controller, ThingsBoard, and local persistence components.
 
 The main loop is responsible for:
@@ -24,7 +24,7 @@ interaction.
 Startup Phase
 -------------
 
-Before entering the steady-state main loop, the TEG gateway performs a short
+Before entering the steady-state main loop, TEGAT performs a short
 initialization phase:
 
 - Command-line arguments are parsed
@@ -69,7 +69,7 @@ supervises its restart without terminating the main loop itself.
 Shutdown Behavior
 -----------------
 
-The TEG gateway responds gracefully to shutdown signals:
+TEGAT responds gracefully to shutdown signals:
 
 - Active connections are closed cleanly
 - Local databases are flushed and closed
@@ -81,6 +81,6 @@ timeout.
 Operational Notes
 -----------------
 
-- The main loop runs continuously as long as the TEG gateway process is active.
+- The main loop runs continuously as long as the TEGAT process is active.
 - Most user-facing features (RPCs, file management, OTA updates) are coordinated
   through this loop.

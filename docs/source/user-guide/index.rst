@@ -1,9 +1,9 @@
 User Guide
 ==========
 
-This user guide provides practical, operator-focused documentation for managing and operating the TEG Gateway in production environments. It covers the core remote management features exposed through ThingsBoard and explains how to safely control, update, and maintain deployed devices without physical access.
+This user guide provides practical, operator-focused documentation for managing and operating TEGAT in production environments. It covers the core remote management features exposed through ThingsBoard and explains how to safely control, update, and maintain deployed devices without physical access.
 
-The guide is intended for system operators, developers, and administrators who work with TEG Gateway deployments. Use the sections below to explore individual features in detail, including remote file synchronization, software updates, and on-demand remote actions via RPC.
+The guide is intended for system operators, developers, and administrators who work with TEGAT deployments. Use the sections below to explore individual features in detail, including remote file synchronization, software updates, and on-demand remote actions via RPC.
 
 
 .. toctree::
