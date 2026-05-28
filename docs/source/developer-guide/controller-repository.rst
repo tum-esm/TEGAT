@@ -16,7 +16,7 @@ The controller repository:
 - is executed inside an isolated Docker container
 - communicates with the gateway exclusively via a local SQLite database
 
-The TEGAT is responsible for:
+TEGAT is responsible for:
 
 - building the controller Docker image
 - starting and supervising the controller Docker container
