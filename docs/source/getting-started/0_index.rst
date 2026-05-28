@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-This section describes how to install and set up both the thingsboard server software (part of the open source `Thingsboard project <https://thingsboard.io/>`_) and the TEGAT client software (`this project <https://github.com/tum-esm/TEGAT/>`_).
+This section describes how to install and set up both the thingsboard server software (part of the open source `Thingsboard project <https://thingsboard.io/>`_) and the TEGAT client software (`this project <https://github.com/tum-esm/tegat/>`_).
 
 .. toctree::
     :caption: Contents:
