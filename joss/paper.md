@@ -122,7 +122,7 @@ and continues to communicate with the ThingsBoard IoT platform. This design ensu
 reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
 connectivity or requiring on-site intervention.
 
-![Overview of the software architecture for on-device (TEGAT, Controller) and off premise (ThingsBoard, Git Repository) components. Arrows indicate the flow of data and actions between components. Dashed boxes show local files that are used for configuration, management and data persistence. \label{fig:architecture}](figures/figure1.png)
+![Overview of the software architecture for on-device (green) and off-premise (blue) components. Purple boxes show the three main architecture components TEGAT (1), Controller Software (2), and the ThingsBoard IoT Platform (3). Arrows indicate the flow of data and actions components. Dashed boxes show local files that are used for configuration, management and data persistence. \label{fig:architecture}](figures/figure1.png)
 
 ## Software Design and Implementation
 The TEGAT software is written in Python (@Python). It follows a modular design, encapsulating independent
