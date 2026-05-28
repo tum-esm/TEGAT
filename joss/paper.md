@@ -172,10 +172,8 @@ starting point for developers to copy and modify for their own projects.
 
 # Research impact statement
 
-TEGAT has been validated in a real-world scientific deployment within the ICOS Cities project. It has 
-enabled reliable data collection from the ACROPOLIS network (@ACROPOLIS2026), consisting of 20 environmental sensors deployed in an urban setting. As part
-of this project, ACROPOLIS-edge (@ACROPOLIS-edge) serves as an example of a successful implementation of TEGAT 
-in a real world use case.
+TEGAT has been validated in the ACROPOLIS urban CO2 sensor network (@ACROPOLIS2026) within the ICOS Cities project. ACROPOLIS-edge (@ACROPOLIS-edge) serves as an example of a successful deployment of TEGAT in a real world use case. During this deployment, it continuously ran over 18 months across 17 devices, transmitted over 100 million messages to ThingsBoard, deployed over 250 OTA updates across the network, and processed over 1000 triggers from remote procedure calls and remote file management operations. 
+
 
 [^1]: https://tum-esm.github.io/TEGAT/user-guide/
 
