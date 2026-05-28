@@ -41,7 +41,7 @@ Compiling from source:
     sudo make install
     curl -sSL https://install.python-poetry.org/ | python3.12 -
 
-Download  TEGAT Sourcecode
+Download TEGAT Sourcecode
 -----------------------------------
 
 You can download the latest release of TEGAT from the GitHub repository:
