@@ -35,7 +35,7 @@ TEGAT (Telemetry Edge Gateway) is a lightweight, general-purpose open source sof
 devices. 
 It is built to integrate with the ThingsBoard platform and was designed specifically for operating distributed 
 sensor networks for scientific research.
-Originally developed for and validated in the ACROPOLIS sensor network, it is network-agnostic and can be used with a 
+Originally developed for and validated in the ACROPOLIS urban CO2 sensor network, it is network-agnostic and can be used with a 
 wide range of sensor hardware.
 TEGAT offers a stable and reusable architectural baseline for distributed sensor networks, enabling users to 
 focus on application-specific logic while relying on a field-tested software solution for communication, data 
