@@ -1,5 +1,5 @@
 """
-Example controller for the TEG Gateway demo.
+Example controller for the TEGAT demo.
 
 This script demonstrates a minimal controller loop that:
 - initializes the local communication database,

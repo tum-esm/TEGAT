@@ -1,7 +1,7 @@
-"""Main entry point for the TEG Gateway.
+"""Main entry point for TEGAT.
 
-This module implements the primary runtime loop of the Edge Gateway. It is
-responsible for initializing all subsystems, establishing communication with
+This module implements the primary runtime loop of the Telemetry Edge Gateway (TEGAT).
+It is responsible for initializing all subsystems, establishing communication with
 ThingsBoard, and coordinating message flow between the controller, local
 persistence layers, and remote services.
 
