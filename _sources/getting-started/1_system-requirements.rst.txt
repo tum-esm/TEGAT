@@ -1,9 +1,9 @@
 System Requirements
 ===================
 
-The documentation has been tested using the `Ubuntu OS <https://ubuntu.com/>`_ on a rented virtual private server (for Thingsboard) as well as using the `Raspberry Pi OS <https://www.raspberrypi.com/software/>`_ on a Raspberry Pi device (for the TEG gateway).
+The documentation has been tested using the `Ubuntu OS <https://ubuntu.com/>`_ on a rented virtual private server (for Thingsboard) as well as using the `Raspberry Pi OS <https://www.raspberrypi.com/software/>`_ on a Raspberry Pi device (for TEGAT).
 
-However, both Thingsboard and the TEG gateway software can be installed on any Linux based system that supports Docker. Notes specific to setting up the TEG gateway on a Raspberry Pi are included.
+However, both Thingsboard and TEGAT can be installed on any Linux based system that supports Docker. Notes specific to setting up TEGAT on a Raspberry Pi are included.
 
 Minimum system requirements are:
 
@@ -13,7 +13,7 @@ Minimum system requirements are:
 
     * - Component
       - Thingsboard Server
-      - Teg Gateway
+      - TEGAT
     * - RAM
       - 2GB
       - 512MB

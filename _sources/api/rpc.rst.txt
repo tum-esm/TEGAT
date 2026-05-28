@@ -1,7 +1,7 @@
 Remote Procedure Calls
 ============================
 
-This section documents the RPC interface exposed by the TEG Gateway for
+This section documents the RPC interface exposed by TEGAT for
 operational control, diagnostics, and maintenance tasks.
 
 RPC Handler

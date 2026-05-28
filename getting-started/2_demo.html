@@ -44,7 +44,7 @@
 <li class="toctree-l2"><a class="reference internal" href="1_system-requirements.html">System Requirements</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_thingsboard_server_installation.html">ThingsBoard Server Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_teg_gateway_installation.html">TEG-Gateway Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_tegat_installation.html">TEGAT Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4_setup.html">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5_setup-from-image.html">Setup from Image</a></li>
 </ul>
@@ -85,13 +85,13 @@
             
   <section id="demo">
 <h1>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h1>
-<p>This docker-based demo deployment runs a local ThingsBoard instance together with the TEG gateway and a simulated controller.
-It is meant for showcasing the teg-gateway’s features in an easy to set up example environment.</p>
+<p>This docker-based demo deployment runs a local ThingsBoard instance together with TEGAT and a simulated controller.
+It is meant for showcasing TEGAT’s features in an easy to set up example environment.</p>
 <section id="what-the-demo-includes">
 <h2>What the demo includes<a class="headerlink" href="#what-the-demo-includes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>ThingsBoard CE + Postgres</p></li>
-<li><p>TEG gateway container built from this repository</p></li>
+<li><p>The TEGAT container built from this repository</p></li>
 <li><p>Example controller that generates simulated sensor data</p></li>
 <li><p>Optional TLS reverse proxy (nginx) with a self-signed certificate</p></li>
 <li><p>Example thingsboard dashboard for visualizing the simulated sensor data</p></li>
@@ -150,8 +150,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>version
 <span id="id1"></span><h2>Prepare the demo data directory<a class="headerlink" href="#prepare-the-demo-data-directory" title="Link to this heading">¶</a></h2>
 <p>Create a local data folder and point the demo to it:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>demo
-mkdir<span class="w"> </span>-p<span class="w"> </span>data/teg-gateway
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;TEG_DATA_PATH=</span><span class="k">$(</span>realpath<span class="w"> </span>data/teg-gateway<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.env
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/tegat
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;TEG_DATA_PATH=</span><span class="k">$(</span>realpath<span class="w"> </span>data/tegat<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.env
 </pre></div>
 </div>
 </section>

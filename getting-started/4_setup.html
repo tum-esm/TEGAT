@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Setup from Image" href="5_setup-from-image.html" />
-    <link rel="prev" title="TEG-Gateway Installation" href="3_teg_gateway_installation.html" />
+    <link rel="prev" title="TEGAT Installation" href="3_tegat_installation.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -44,7 +44,7 @@
 <li class="toctree-l2"><a class="reference internal" href="1_system-requirements.html">System Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_demo.html">Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_thingsboard_server_installation.html">ThingsBoard Server Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_teg_gateway_installation.html">TEG-Gateway Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_tegat_installation.html">TEGAT Installation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5_setup-from-image.html">Setup from Image</a></li>
 </ul>
@@ -59,7 +59,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="0_index.html">Getting Started</a><ul>
-      <li>Previous: <a href="3_teg_gateway_installation.html" title="previous chapter">TEG-Gateway Installation</a></li>
+      <li>Previous: <a href="3_tegat_installation.html" title="previous chapter">TEGAT Installation</a></li>
       <li>Next: <a href="5_setup-from-image.html" title="next chapter">Setup from Image</a></li>
   </ul></li>
   </ul></li>
@@ -85,7 +85,7 @@
             
   <section id="setup">
 <span id="id1"></span><h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h1>
-<p>How to set up the TEG gateway on an IoT device once it has been installed.</p>
+<p>How to set up TEGAT on an IoT device once it has been installed.</p>
 <section id="docker">
 <h2>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h2>
 <p>Create a Docker daemon configuration file:</p>
@@ -138,25 +138,25 @@ this guide intentionally does not repeat them here.</p>
 <li><p>Optionally, set the desired hostname in your OS configuration</p></li>
 </ul>
 </section>
-<section id="build-the-teg-gateway-runner-docker-image">
-<h2>Build the TEG Gateway runner Docker image:<a class="headerlink" href="#build-the-teg-gateway-runner-docker-image" title="Link to this heading">¶</a></h2>
+<section id="build-the-tegat-runner-docker-image">
+<h2>Build the TEGAT runner Docker image:<a class="headerlink" href="#build-the-tegat-runner-docker-image" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>scripts
-./build_gateway_runner_docker_image.sh<span class="w"> </span><span class="c1"># builds the teg-gateway-runner docker image</span>
+./build_gateway_runner_docker_image.sh<span class="w"> </span><span class="c1"># builds the TEGAT-runner docker image</span>
 </pre></div>
 </div>
 </section>
-<section id="run-teg-gateway-using-docker-daemon">
-<h2>Run TEG Gateway using Docker daemon:<a class="headerlink" href="#run-teg-gateway-using-docker-daemon" title="Link to this heading">¶</a></h2>
+<section id="run-tegat-using-docker-daemon">
+<h2>Run TEGAT using Docker daemon:<a class="headerlink" href="#run-tegat-using-docker-daemon" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>scripts
 ./run_dockerized_gateway.sh<span class="w"> </span><span class="c1"># also registers device with ThingsBoard and creates tb_access_token</span>
-docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>-f<span class="w"> </span>acropolis_edge_gateway<span class="w"> </span><span class="c1"># watch live logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>-f<span class="w"> </span>tegat<span class="w"> </span><span class="c1"># see live logs</span>
 </pre></div>
 </div>
 </section>
 <section id="device-provisioning">
 <span id="setup-device-provisioning"></span><h2>Device Provisioning<a class="headerlink" href="#device-provisioning" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>On first start, the gateway will self‑provision if no access token file exists.</p></li>
+<li><p>On first start, the gateway will self-provision if no access token file exists.</p></li>
 <li><p>By default, the device name will match the host OS hostname (unless overridden via environment variable).</p></li>
 </ul>
 </section>

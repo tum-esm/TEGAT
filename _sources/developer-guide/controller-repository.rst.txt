@@ -1,9 +1,8 @@
 Controller Repository
 =====================
 
-The controller git repository contains the software for interfacing with device-side hardware and is managed by the
-TEG-gateway.
-It is designed to be a standalone, versioned component that is built and deployed independently from the TEG-gateway.
+The controller git repository contains the software for interfacing with device-side hardware and is managed by TEGAT.
+It is designed to be a standalone, versioned component that is built and deployed independently from TEGAT.
 
 
 Architecture Overview
@@ -17,7 +16,7 @@ The controller repository:
 - is executed inside an isolated Docker container
 - communicates with the gateway exclusively via a local SQLite database
 
-The TEG-gateway is responsible for:
+TEGAT is responsible for:
 
 - building the controller Docker image
 - starting and supervising the controller Docker container
@@ -103,14 +102,14 @@ The controller must periodically write a timestamp (milliseconds since epoch) to
 
 ``health_check(id=1, timestamp_ms=<now>)``
 
-The TEG-gateway monitors this timestamp to detect stalled or crashed controllers.
+TEGAT monitors this timestamp to detect stalled or crashed controllers.
 
 Failure Handling
 ----------------
 
 Controllers must fail fast and exit the main process if an unrecoverable error occurs.
 
-The TEG-gateway will automatically restart the container using an exponential backoff.
+TEGAT will automatically restart the container using an exponential backoff.
 
 Controllers must not:
 

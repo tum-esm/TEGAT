@@ -44,7 +44,7 @@
 <li class="toctree-l2"><a class="reference internal" href="1_system-requirements.html">System Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_demo.html">Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_thingsboard_server_installation.html">ThingsBoard Server Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_teg_gateway_installation.html">TEG-Gateway Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_tegat_installation.html">TEGAT Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4_setup.html">Setup</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Setup from Image</a></li>
 </ul>
@@ -90,13 +90,13 @@
 <p>An image can be created from the prepared system and then flashed onto other systems. The new systems can then be renamed and provisioned individually.</p>
 <section id="once-create-backup-image">
 <h2>(Once) Create Backup Image<a class="headerlink" href="#once-create-backup-image" title="Link to this heading">¶</a></h2>
-<p>-&gt; Prepare system and install necessary software as described in <a class="reference internal" href="3_teg_gateway_installation.html#teg-gateway-installation"><span class="std std-ref">TEG-Gateway Installation</span></a> and <a class="reference internal" href="4_setup.html#setup"><span class="std std-ref">Setup</span></a>
+<p>-&gt; Prepare system and install necessary software as described in <a class="reference internal" href="3_tegat_installation.html#tegat-installation"><span class="std std-ref">TEGAT Installation</span></a> and <a class="reference internal" href="4_setup.html#setup"><span class="std std-ref">Setup</span></a>
 -&gt; Do not provision the device as this needs to be done for each system individually after flashing the image.
 -&gt; Insert fresh SD Card</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>diskutil<span class="w"> </span>list
 <span class="c1"># replace [*] with the correct disk number of the SD Card (e.g. disk2)</span>
 <span class="c1"># diskutil umountDisk /dev/disk[*]</span>
-<span class="c1"># dd status=progress bs=4M  if=/dev/disk[*] | gzip &gt; //Users/.../</span>
+<span class="c1"># dd status=progress bs=4M  if=/dev/disk[*] | gzip &gt; //Users/.../tegat-image.gz</span>
 </pre></div>
 </div>
 </section>
@@ -108,7 +108,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>diskutil<span class="w"> </span>list
 <span class="c1"># replace [*] with the correct disk number of the SD Card (e.g. disk2)</span>
 <span class="c1">#diskutil umountDisk /dev/disk[*]</span>
-<span class="c1">#gzip -dc //Users/.../teg-image.gz | sudo dd of=/dev/disk[*] bs=4M status=progress</span>
+<span class="c1">#gzip -dc //Users/.../tegat-image.gz | sudo dd of=/dev/disk[*] bs=4M status=progress</span>
 </pre></div>
 </div>
 <p>-&gt; Remove SD Card and

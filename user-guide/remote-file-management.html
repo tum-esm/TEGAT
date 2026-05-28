@@ -83,24 +83,24 @@
             
   <section id="remote-file-management">
 <span id="id1"></span><h1>Remote File Management<a class="headerlink" href="#remote-file-management" title="Link to this heading">¶</a></h1>
-<p>The TEG gateway supports remote file management via ThingsBoard shared attributes. This mechanism allows configuration and system files on the gateway device to be created, updated, monitored, and synchronized in a controlled and traceable way. The approach is designed to be robust against intermittent connectivity and to support both read-only mirroring and file writing.</p>
-<p>The remote file management mechanism follows a <em>server-authoritative</em> model. ThingsBoard shared attributes define the desired state of all managed files. The TEG gateway never propagates local file changes upstream, except for mirroring file content and reporting synchronization status.</p>
+<p>TEGAT supports remote file management via ThingsBoard shared attributes. This mechanism allows configuration and system files on the gateway device to be created, updated, monitored, and synchronized in a controlled and traceable way. The approach is designed to be robust against intermittent connectivity and to support both read-only mirroring and file writing.</p>
+<p>The remote file management mechanism follows a <em>server-authoritative</em> model. ThingsBoard shared attributes define the desired state of all managed files. TEGAT never propagates local file changes upstream, except for mirroring file content and reporting synchronization status.</p>
 <section id="shared-attributes">
 <h2>Shared Attributes<a class="headerlink" href="#shared-attributes" title="Link to this heading">¶</a></h2>
-<p>Shared attributes are used to push file metadata and file content from ThingsBoard to the TEG gateway. The central element is the <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute, which defines which files are managed and how they should be handled. Actual file content is transferred separately using dedicated attributes.</p>
+<p>Shared attributes are used to push file metadata and file content from ThingsBoard to TEGAT. The central element is the <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute, which defines which files are managed and how they should be handled. Actual file content is transferred separately using dedicated attributes.</p>
 <section id="initialize-the-files-attribute">
 <h3>Initialize the <code class="docutils literal notranslate"><span class="pre">FILES</span></code> Attribute<a class="headerlink" href="#initialize-the-files-attribute" title="Link to this heading">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute is a JSON object containing metadata entries for each managed file. Each entry defines the target path on the TEG gateway, the encoding used for file transfer, and optional behavior flags.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute is a JSON object containing metadata entries for each managed file. Each entry defines the target path on TEGAT, the encoding used for file transfer, and optional behavior flags.</p>
 <p>Supported metadata fields:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>
-Target location on the TEG gateway filesystem. Can be absolute or relative. Locally defined environment variables such as <code class="docutils literal notranslate"><span class="pre">$DATA_PATH</span></code> are expanded at runtime.</p></li>
+Target location on the TEGAT filesystem. Can be absolute or relative. Locally defined environment variables such as <code class="docutils literal notranslate"><span class="pre">$DATA_PATH</span></code> are expanded at runtime.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code>
 Encoding used when transferring file content. Supported values are <code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code>, and <code class="docutils literal notranslate"><span class="pre">base64</span></code>. Base64 is recommended for files containing line breaks or special characters.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">write_version</span></code> (optional)
 Monotonically increasing version number used to ensure that the latest file version is applied after temporary disconnections.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">restart_controller_on_change</span></code> (optional)
-Boolean flag indicating whether the controller software should be restarted after a successful file update. Only the managed controller is restarted when this flag is set. The TEG gateway process itself continues running and is not restarted.</p></li>
+Boolean flag indicating whether the controller software should be restarted after a successful file update. Only the managed controller is restarted when this flag is set. The TEGAT process itself continues running and is not restarted.</p></li>
 </ul>
 <p>Example: Managing a controller configuration file and the system crontab</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -118,13 +118,13 @@ Boolean flag indicating whether the controller software should be restarted afte
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>When a new entry is added to the <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute, the TEG gateway evaluates whether a corresponding <code class="docutils literal notranslate"><span class="pre">FILE_CONTENT_&lt;file_key&gt;</span></code> attribute exists.</p>
+<p>When a new entry is added to the <code class="docutils literal notranslate"><span class="pre">FILES</span></code> attribute, TEGAT evaluates whether a corresponding <code class="docutils literal notranslate"><span class="pre">FILE_CONTENT_&lt;file_key&gt;</span></code> attribute exists.</p>
 <ul class="simple">
 <li><p>If file content is available, the file is created or updated accordingly.</p></li>
 <li><p>If no file content attribute exists, the file is treated as read-only and its current content is mirrored back to ThingsBoard.</p></li>
 </ul>
-<p>Read-only mirroring is intended for observability and auditing of files that are not actively managed by the TEG gateway, for example log files, system files or configuration files modified by other services.</p>
-<p>In both cases, the TEG gateway creates a client attribute named <code class="docutils literal notranslate"><span class="pre">FILE_READ_&lt;file_key&gt;</span></code> containing the latest local file content which can be accessed in ThingsBoard and included in Dashboards.</p>
+<p>Read-only mirroring is intended for observability and auditing of files that are not actively managed by TEGAT, for example log files, system files or configuration files modified by other services.</p>
+<p>In both cases, TEGAT creates a client attribute named <code class="docutils literal notranslate"><span class="pre">FILE_READ_&lt;file_key&gt;</span></code> containing the latest local file content which can be accessed in ThingsBoard and included in Dashboards.</p>
 </section>
 <section id="populate-file-content-file-key-attributes">
 <h3>Populate <code class="docutils literal notranslate"><span class="pre">FILE_CONTENT_&lt;file_key&gt;</span></code> Attributes<a class="headerlink" href="#populate-file-content-file-key-attributes" title="Link to this heading">¶</a></h3>
@@ -138,7 +138,7 @@ Boolean flag indicating whether the controller software should be restarted afte
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>After applying the update, the TEG gateway mirrors the current file content into the client attribute <code class="docutils literal notranslate"><span class="pre">FILE_READ_controller_config</span></code>.</p>
+<p>After applying the update, TEGAT mirrors the current file content into the client attribute <code class="docutils literal notranslate"><span class="pre">FILE_READ_controller_config</span></code>.</p>
 </section>
 <section id="use-case-update-the-system-crontab">
 <h4>Use case: Update the system crontab<a class="headerlink" href="#use-case-update-the-system-crontab" title="Link to this heading">¶</a></h4>
@@ -146,7 +146,7 @@ Boolean flag indicating whether the controller software should be restarted afte
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>U0hFTEw9L2Jpbi9iYXNoClBBVEg9L3Vzci9sb2NhbC9zYmluOi91c3IvbG9jYWwvYmluOi91c3IvbG9jYWwvYmluOi91c3Ivc2JpbjovdXNyL2Jpbjovc2JpbjovYmluCkhPTUU9L3Jvb3QKCiMgRG9ja2VyCkBkYWlseSBkb2NrZXIgc3lzdGVtIHBydW5lIC1hIC0tZm9yY2UgLS1maWx0ZXIgInVudGlsPTg3NjBoIgoKIyBEZWxldGUgb2xkIGxvZyBmaWxlcyAob2xkZXIgdGhhbiAxMDAgZGF5cykKQGRhaWx5IC91c3IvYmluL2ZpbmQgL2hvbWUvcGkvY29udHJvbGxlci9sb2dzLyAtdHlwZSBmIC1tdGltZSArMTAwIC1kZWxldGUK
 </pre></div>
 </div>
-<p>After the update is applied, the TEG gateway mirrors the current crontab content encoded as <code class="docutils literal notranslate"><span class="pre">base64</span></code> into the client attribute <code class="docutils literal notranslate"><span class="pre">FILE_READ_crontab</span></code>.</p>
+<p>After the update is applied, TEGAT mirrors the current crontab content encoded as <code class="docutils literal notranslate"><span class="pre">base64</span></code> into the client attribute <code class="docutils literal notranslate"><span class="pre">FILE_READ_crontab</span></code>.</p>
 </section>
 </section>
 </section>
@@ -161,15 +161,15 @@ Boolean flag indicating whether the controller software should be restarted afte
 </section>
 <section id="file-hashes-and-synchronization">
 <h2>File Hashes and Synchronization<a class="headerlink" href="#file-hashes-and-synchronization" title="Link to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">FILE_HASHES</span></code> attribute is used to ensure consistency between ThingsBoard and the TEG gateway.</p>
-<p>The TEG gateway periodically computes a hash for each managed local file and compares it against the corresponding entry in <code class="docutils literal notranslate"><span class="pre">FILE_HASHES</span></code>. Each entry includes both the hash and the associated <code class="docutils literal notranslate"><span class="pre">write_version</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILE_HASHES</span></code> attribute is used to ensure consistency between ThingsBoard and TEGAT.</p>
+<p>TEGAT periodically computes a hash for each managed local file and compares it against the corresponding entry in <code class="docutils literal notranslate"><span class="pre">FILE_HASHES</span></code>. Each entry includes both the hash and the associated <code class="docutils literal notranslate"><span class="pre">write_version</span></code>.</p>
 <p>If a mismatch is detected:</p>
 <ul class="simple">
-<li><p>The TEG gateway requests the latest content from <code class="docutils literal notranslate"><span class="pre">FILE_CONTENT_&lt;file_key&gt;</span></code>.</p></li>
+<li><p>TEGAT requests the latest content from <code class="docutils literal notranslate"><span class="pre">FILE_CONTENT_&lt;file_key&gt;</span></code>.</p></li>
 <li><p>If the shared attribute is missing or empty, no action is taken.</p></li>
-<li><p>If a managed file was modified locally, the detected hash mismatch causes the TEG gateway to re-apply the remote file content, restoring the desired state defined in ThingsBoard.</p></li>
+<li><p>If a managed file was modified locally, the detected hash mismatch causes TEGAT to re-apply the remote file content, restoring the desired state defined in ThingsBoard.</p></li>
 </ul>
-<p>If a file update fails, for example due to invalid encoding, insufficient permissions, or temporary I/O errors, the TEG gateway logs the error locally and does not update the corresponding hash entry. This allows the issue to be diagnosed and retried without leaving the system in an inconsistent state.</p>
+<p>If a file update fails, for example due to invalid encoding, insufficient permissions, or temporary I/O errors, TEGAT logs the error locally and does not update the corresponding hash entry. This allows the issue to be diagnosed and retried without leaving the system in an inconsistent state.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">FILE_HASHES</span></code> client attribute</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;crontab&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

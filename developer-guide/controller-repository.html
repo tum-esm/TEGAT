@@ -83,9 +83,8 @@
             
   <section id="controller-repository">
 <h1>Controller Repository<a class="headerlink" href="#controller-repository" title="Link to this heading">¶</a></h1>
-<p>The controller git repository contains the software for interfacing with device-side hardware and is managed by the
-TEG-gateway.
-It is designed to be a standalone, versioned component that is built and deployed independently from the TEG-gateway.</p>
+<p>The controller git repository contains the software for interfacing with device-side hardware and is managed by TEGAT.
+It is designed to be a standalone, versioned component that is built and deployed independently from TEGAT.</p>
 <section id="architecture-overview">
 <h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">¶</a></h2>
 <p>The controller repository:</p>
@@ -96,7 +95,7 @@ It is designed to be a standalone, versioned component that is built and deploye
 <li><p>is executed inside an isolated Docker container</p></li>
 <li><p>communicates with the gateway exclusively via a local SQLite database</p></li>
 </ul>
-<p>The TEG-gateway is responsible for:</p>
+<p>TEGAT is responsible for:</p>
 <ul class="simple">
 <li><p>building the controller Docker image</p></li>
 <li><p>starting and supervising the controller Docker container</p></li>
@@ -166,13 +165,13 @@ OTA software update feature to function.</p>
 <h3>Health Check Mechanism<a class="headerlink" href="#health-check-mechanism" title="Link to this heading">¶</a></h3>
 <p>The controller must periodically write a timestamp (milliseconds since epoch) to:</p>
 <p><code class="docutils literal notranslate"><span class="pre">health_check(id=1,</span> <span class="pre">timestamp_ms=&lt;now&gt;)</span></code></p>
-<p>The TEG-gateway monitors this timestamp to detect stalled or crashed controllers.</p>
+<p>TEGAT monitors this timestamp to detect stalled or crashed controllers.</p>
 </section>
 </section>
 <section id="failure-handling">
 <h2>Failure Handling<a class="headerlink" href="#failure-handling" title="Link to this heading">¶</a></h2>
 <p>Controllers must fail fast and exit the main process if an unrecoverable error occurs.</p>
-<p>The TEG-gateway will automatically restart the container using an exponential backoff.</p>
+<p>TEGAT will automatically restart the container using an exponential backoff.</p>
 <p>Controllers must not:</p>
 <ul class="simple">
 <li><p>Attempt self-restarts</p></li>

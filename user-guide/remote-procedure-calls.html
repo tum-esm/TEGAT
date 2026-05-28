@@ -83,12 +83,12 @@
             
   <section id="remote-procedure-calls">
 <span id="id1"></span><h1>Remote Procedure Calls<a class="headerlink" href="#remote-procedure-calls" title="Link to this heading">¶</a></h1>
-<p>The TEG gateway supports <em>Remote Procedure Calls (RPC)</em> via ThingsBoard’s built-in RPC mechanism. RPCs allow external applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on the TEG gateway and receive immediate feedback.</p>
+<p>TEGAT supports <em>Remote Procedure Calls (RPC)</em> via ThingsBoard’s built-in RPC mechanism. RPCs allow external applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on TEGAT and receive immediate feedback.</p>
 <p>This mechanism is primarily intended for operational control, diagnostics, and maintenance tasks that must be executed on-demand without direct access to the device.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>ThingsBoard provides an RPC widget that acts as an interactive console within dashboards. Using this widget, users can send RPC requests to a specific TEG gateway device and inspect the returned responses in real time.</p>
-<p>RPCs are executed by the TEG gateway and are restricted to a predefined set of supported commands to ensure safe and controlled operation. Unsupported or unknown RPC methods are rejected and return an error response without executing any action on the device.</p>
+<p>ThingsBoard provides an RPC widget that acts as an interactive console within dashboards. Using this widget, users can send RPC requests to a specific TEGAT client and inspect the returned responses in real time.</p>
+<p>RPCs are executed by TEGAT and are restricted to a predefined set of supported commands to ensure safe and controlled operation. Unsupported or unknown RPC methods are rejected and return an error response without executing any action on the device.</p>
 <p>For a general introduction to ThingsBoard RPCs, refer to the official documentation:
 <a class="reference external" href="https://thingsboard.io/docs/user-guide/rpc/">https://thingsboard.io/docs/user-guide/rpc/</a></p>
 <a class="reference internal image-reference" href="../_images/rpc-widget.png"><img alt="ThingsBoard Dashboard RPC widget" class="align-center" src="../_images/rpc-widget.png" style="width: 80%;" />
@@ -96,7 +96,7 @@
 </section>
 <section id="built-in-rpc-command-list">
 <h2>Built-in RPC Command: <code class="docutils literal notranslate"><span class="pre">list</span></code><a class="headerlink" href="#built-in-rpc-command-list" title="Link to this heading">¶</a></h2>
-<p>The TEG gateway controller exposes a built-in RPC command named <code class="docutils literal notranslate"><span class="pre">list</span></code>. This command returns a human-readable list of all RPC commands currently supported by the controller, including a short description of each command and its expected parameters.</p>
+<p>TEGAT exposes a built-in RPC command named <code class="docutils literal notranslate"><span class="pre">list</span></code>. This command returns a human-readable list of all RPC commands currently supported by the controller, including a short description of each command and its expected parameters.</p>
 <p>This command is useful for quickly verifying RPC capabilities.</p>
 <p>Example response:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -118,7 +118,7 @@
 </section>
 <section id="supported-rpc-commands">
 <h2>Supported RPC Commands<a class="headerlink" href="#supported-rpc-commands" title="Link to this heading">¶</a></h2>
-<p>The following RPC commands are currently supported by the TEG gateway controller. Command availability may depend on the deployed controller version.</p>
+<p>The following RPC commands are currently supported by TEGAT. Command availability may depend on the deployed controller version.</p>
 <section id="ping">
 <h3><code class="docutils literal notranslate"><span class="pre">ping</span></code><a class="headerlink" href="#ping" title="Link to this heading">¶</a></h3>
 <p>Performs a simple connectivity check.</p>
@@ -136,7 +136,7 @@
 </section>
 <section id="reboot">
 <h3><code class="docutils literal notranslate"><span class="pre">reboot</span></code><a class="headerlink" href="#reboot" title="Link to this heading">¶</a></h3>
-<p>Reboots the TEG gateway host system.</p>
+<p>Reboots the TEGAT host system.</p>
 <dl class="simple">
 <dt><strong>Description</strong></dt><dd><p>Performs a full system reboot of the device.</p>
 </dd>
@@ -151,7 +151,7 @@
 </section>
 <section id="shutdown">
 <h3><code class="docutils literal notranslate"><span class="pre">shutdown</span></code><a class="headerlink" href="#shutdown" title="Link to this heading">¶</a></h3>
-<p>Shuts down the TEG gateway host system.</p>
+<p>Shuts down the TEGAT host system.</p>
 <dl class="simple">
 <dt><strong>Description</strong></dt><dd><p>Powers off the device gracefully.</p>
 </dd>
@@ -165,7 +165,7 @@
 </section>
 <section id="exit">
 <h3><code class="docutils literal notranslate"><span class="pre">exit</span></code><a class="headerlink" href="#exit" title="Link to this heading">¶</a></h3>
-<p>Terminates the TEG gateway process.</p>
+<p>Terminates the TEGAT process.</p>
 <dl class="simple">
 <dt><strong>Description</strong></dt><dd><p>Stops the gateway Docker container, which triggers an automatic restart by Docker.</p>
 </dd>
@@ -184,7 +184,7 @@
 <p>Restarts the controller software Docker container.</p>
 <dl>
 <dt><strong>Description</strong></dt><dd><p>Stops and restarts the controller Docker container without affecting the gateway runtime.</p>
-<p>This command does not restart the TEG gateway process itself. Telemetry buffering, file synchronization, and connectivity to ThingsBoard remain active during the controller restart.</p>
+<p>This command does not restart the TEGAT process itself. Telemetry buffering, file synchronization, and connectivity to ThingsBoard remain active during the controller restart.</p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><p>None</p>
 </dd>
@@ -214,7 +214,7 @@ This RPC allows the file management initialization process to be triggered manua
 </section>
 <section id="run-command">
 <h3><code class="docutils literal notranslate"><span class="pre">run_command</span></code><a class="headerlink" href="#run-command" title="Link to this heading">¶</a></h3>
-<p>Executes an arbitrary command on the TEG gateway host.</p>
+<p>Executes an arbitrary command on the TEGAT host.</p>
 <dl class="simple">
 <dt><strong>Description</strong></dt><dd><p>Executes a shell command on the device and returns the command output.</p>
 </dd>
@@ -263,7 +263,7 @@ This RPC allows the file management initialization process to be triggered manua
 </section>
 <section id="security-considerations">
 <h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading">¶</a></h2>
-<p>RPC commands provide powerful control over TEG gateway devices. It is strongly recommended to:</p>
+<p>RPC commands provide powerful control over devices running TEGAT. It is strongly recommended to:</p>
 <ul class="simple">
 <li><p>Restrict RPC access to trusted users and dashboards only</p></li>
 <li><p>Avoid exposing sensitive commands such as <code class="docutils literal notranslate"><span class="pre">run_command</span></code> to non-administrative users</p></li>

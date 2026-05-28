@@ -2,7 +2,7 @@
 Remote Procedure Calls
 ======================
 
-The TEG gateway supports *Remote Procedure Calls (RPC)* via ThingsBoard's built-in RPC mechanism. RPCs allow external applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on the TEG gateway and receive immediate feedback.
+TEGAT supports *Remote Procedure Calls (RPC)* via ThingsBoard's built-in RPC mechanism. RPCs allow external applications, automation scripts, or ThingsBoard dashboards to invoke predefined commands on TEGAT and receive immediate feedback.
 
 This mechanism is primarily intended for operational control, diagnostics, and maintenance tasks that must be executed on-demand without direct access to the device.
 
@@ -10,9 +10,9 @@ This mechanism is primarily intended for operational control, diagnostics, and m
 Overview
 --------
 
-ThingsBoard provides an RPC widget that acts as an interactive console within dashboards. Using this widget, users can send RPC requests to a specific TEG gateway device and inspect the returned responses in real time.
+ThingsBoard provides an RPC widget that acts as an interactive console within dashboards. Using this widget, users can send RPC requests to a specific TEGAT client and inspect the returned responses in real time.
 
-RPCs are executed by the TEG gateway and are restricted to a predefined set of supported commands to ensure safe and controlled operation. Unsupported or unknown RPC methods are rejected and return an error response without executing any action on the device.
+RPCs are executed by TEGAT and are restricted to a predefined set of supported commands to ensure safe and controlled operation. Unsupported or unknown RPC methods are rejected and return an error response without executing any action on the device.
 
 For a general introduction to ThingsBoard RPCs, refer to the official documentation:
 https://thingsboard.io/docs/user-guide/rpc/
@@ -27,7 +27,7 @@ https://thingsboard.io/docs/user-guide/rpc/
 Built-in RPC Command: ``list``
 ------------------------------
 
-The TEG gateway controller exposes a built-in RPC command named ``list``. This command returns a human-readable list of all RPC commands currently supported by the controller, including a short description of each command and its expected parameters.
+TEGAT exposes a built-in RPC command named ``list``. This command returns a human-readable list of all RPC commands currently supported by the controller, including a short description of each command and its expected parameters.
 
 This command is useful for quickly verifying RPC capabilities.
 
@@ -54,7 +54,7 @@ Example response:
 Supported RPC Commands
 ----------------------
 
-The following RPC commands are currently supported by the TEG gateway controller. Command availability may depend on the deployed controller version.
+The following RPC commands are currently supported by TEGAT. Command availability may depend on the deployed controller version.
 
 
 ``ping``
@@ -76,7 +76,7 @@ Performs a simple connectivity check.
 ``reboot``
 ^^^^^^^^^^
 
-Reboots the TEG gateway host system.
+Reboots the TEGAT host system.
 
 **Description**
   Performs a full system reboot of the device.
@@ -92,7 +92,7 @@ Reboots the TEG gateway host system.
 ``shutdown``
 ^^^^^^^^^^^^
 
-Shuts down the TEG gateway host system.
+Shuts down the TEGAT host system.
 
 **Description**
   Powers off the device gracefully.
@@ -107,7 +107,7 @@ Shuts down the TEG gateway host system.
 ``exit``
 ^^^^^^^^
 
-Terminates the TEG gateway process.
+Terminates the TEGAT process.
 
 **Description**
   Stops the gateway Docker container, which triggers an automatic restart by Docker.
@@ -129,7 +129,7 @@ Restarts the controller software Docker container.
 **Description**
   Stops and restarts the controller Docker container without affecting the gateway runtime.
 
-  This command does not restart the TEG gateway process itself. Telemetry buffering, file synchronization, and connectivity to ThingsBoard remain active during the controller restart.
+  This command does not restart the TEGAT process itself. Telemetry buffering, file synchronization, and connectivity to ThingsBoard remain active during the controller restart.
 
 **Parameters**
   None
@@ -160,7 +160,7 @@ Initializes file-related client attributes required for remote file management.
 ``run_command``
 ^^^^^^^^^^^^^^^
 
-Executes an arbitrary command on the TEG gateway host.
+Executes an arbitrary command on the TEGAT host.
 
 **Description**
   Executes a shell command on the device and returns the command output.
@@ -209,7 +209,7 @@ Discards archived telemetry messages.
 Security Considerations
 -----------------------
 
-RPC commands provide powerful control over TEG gateway devices. It is strongly recommended to:
+RPC commands provide powerful control over devices running TEGAT. It is strongly recommended to:
 
 - Restrict RPC access to trusted users and dashboards only
 - Avoid exposing sensitive commands such as ``run_command`` to non-administrative users
