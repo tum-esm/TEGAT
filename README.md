@@ -1,16 +1,16 @@
-# Telemetry Edge Gateway (TEG Gateway)
+# Telemetry Edge Gateway (TEGAT)
 
 ![GitHub Release](https://img.shields.io/github/v/release/tum-esm/teg-gateway?display_name=tag)
 ![GitHub Pre-Release](https://img.shields.io/github/v/release/tum-esm/teg-gateway?include_prereleases&display_name=tag&logo=pre-release&label=pre-release)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/release/python-3120/)
-[![mypy](https://github.com/tum-esm/teg-gateway/actions/workflows/test-gateway.yaml/badge.svg)](https://github.com/tum-esm/teg-gateway/actions)
+[![mypy](https://github.com/tum-esm/tegat/actions/workflows/test-gateway.yaml/badge.svg)](https://github.com/tum-esm/tegat/actions)
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://tum-esm.github.io/teg-gateway/)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111.svg)](https://doi.org/10.5281/zenodo.11111) -->
 
 ## Overview
 
-The **TEG Gateway** is a lightweight runtime that connects IoT devices to a central [ThingsBoard](https://thingsboard.io/docs/) server.
+**TEGAT** is a lightweight runtime that connects IoT devices to a central [ThingsBoard](https://thingsboard.io/docs/) server.
 It acts as a reliable communication, management, and supervision layer between the IoT device and the cloud. 
 
 The gateway is designed for unattended, long-term operation in constrained
@@ -31,12 +31,12 @@ It enables remote configuration, software updates, and operational control witho
 
 ## Architecture Overview
 
-The TEG Gateway follows a deliberately simple and robust architecture
+TEGAT follows a deliberately simple and robust architecture
 that separates **infrastructure responsibilities** from **application logic**.
 
 At a high level, the system consists of two cooperating components:
 
-- **TEG Gateway (this project)**  
+- **TEGAT (this project)**  
   A long-running Python process that maintains connectivity to ThingsBoard,
   handles communication, persistence, and remote management, and supervises the
   lifecycle of the controller. The TEG-gateway is designed to remain stable and

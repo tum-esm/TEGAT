@@ -105,7 +105,7 @@ make clean && make
 ### **Install and Configure UDHCPC**
 
 ```bash
-cd /home/pi/teg-gateway/setup/RPi-edge-client
+cd /home/pi/tegat/setup/RPi-edge-client
 sudo cp default.script /usr/share/udhcpc/
 sudo chmod -R 0777 /usr/share/udhcpc/
 ```
@@ -113,14 +113,14 @@ sudo chmod -R 0777 /usr/share/udhcpc/
 ### **Create the teg-gateway folder**
 
 ```bash
-sudo mkdir -p /home/pi/teg-gateway/
-git clone https://github.com/tum-esm/teg-gateway.git ./teg-gateway
+sudo mkdir -p /home/pi/tegat/
+git clone https://github.com/tum-esm/tegat.git ./teg-gateway
 sudo git config --system --add safe.directory '*'
-cd /home/pi/teg-gateway/setup/RPi-edge-client
-sudo cp network_lost_reboot_trigger.sh /home/pi/teg-gateway/
-sudo chmod a+x /home/pi/teg-gateway/network_lost_reboot_trigger.sh
-sudo cp run_dockerized_gateway.sh /home/pi/teg-gateway/
-sudo chmod a+x /home/pi/teg-gateway/run_dockerized_gateway.sh
+cd /home/pi/tegat/setup/RPi-edge-client
+sudo cp network_lost_reboot_trigger.sh /home/pi/tegat/
+sudo chmod a+x /home/pi/tegat/network_lost_reboot_trigger.sh
+sudo cp run_dockerized_gateway.sh /home/pi/tegat/
+sudo chmod a+x /home/pi/tegat/run_dockerized_gateway.sh
 ```
 
 ### **Update Crontab for Automation**
@@ -148,24 +148,24 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin
 @daily docker system prune -a --force --filter "until=8760h"
 
 # Reboot on connectivity loss
-@daily /bin/bash /home/pi/teg-gateway/network_lost_reboot_trigger.sh
+@daily /bin/bash /home/pi/tegat/network_lost_reboot_trigger.sh
 
 # Delete old log files (older than 100 days)
-@daily /usr/bin/find /home/pi/teg-gateway/logs/ -type f -mtime +100 -delete
+@daily /usr/bin/find /home/pi/tegat/logs/ -type f -mtime +100 -delete
 ```
 
 # Setup Gateway
 
 ```bash
 cd /home/pi
-mkdir -p /home/pi/teg-gateway/data
-mkdir -p /home/pi/teg-gateway/logs
+mkdir -p /home/pi/tegat/data
+mkdir -p /home/pi/tegat/logs
 ```
 
 ### **Clone and Build Gateway**
 
 ```bash
-cd /home/pi/teg-gateway/software/gateway
+cd /home/pi/tegat/software/gateway
 sudo ./build_gateway_runner_docker_image.sh
 cd /home/pi/acropolis
 sudo nano run_dockerized_gateway.sh # Update `THINGSBOARD_PROVISION_*` environment parameters
@@ -215,7 +215,7 @@ reboot
 ### **Run Gateway Script**
 
 ```bash
-cd /home/pi/teg-gateway
+cd /home/pi/tegat
 # make sure no 'tb_access_token' exists
 ./run_dockerized_gateway.sh
 docker logs --tail 50 -f acropolis_edge_gateway
