@@ -11,7 +11,7 @@ authors:
   given-names: "Jia"
   orcid: "https://orcid.org/0000-0002-6350-6610"
 title: "TEGAT"
-version: 1.0.0
-doi: 10.5281/zenodo.19113523
+version: v1.0.1
+doi: 10.5281/zenodo.20432416
 date-released: 2026-03-19
 url: "https://github.com/tum-esm/tegat"
