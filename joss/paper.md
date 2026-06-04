@@ -10,7 +10,7 @@ authors:
   - name: Lars Frölich
     orcid: 0009-0000-1579-7727
     equal-contrib: true
-    corresponding: true
+    corresponding: false
     affiliation: 1
   - name: Patrick Aigner
     orcid: 0000-0002-1530-415X
@@ -20,7 +20,7 @@ authors:
   - name: Jia Chen
     orcid: 0000-0002-6350-6610
     equal-contrib: false
-    corresponding: false
+    corresponding: true
     affiliation: 1
 affiliations:
     - name: Environmental Sensing and Modeling, Technical University of Munich (TUM), Munich, Germany
