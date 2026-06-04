@@ -25,7 +25,7 @@ authors:
 affiliations:
     - name: Environmental Sensing and Modeling, Technical University of Munich (TUM), Munich, Germany
       index: 1
-date: 06 February 2026
+date: 04 June 2026
 bibliography: paper.bib
 ---
 
