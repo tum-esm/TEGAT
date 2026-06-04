@@ -4,8 +4,22 @@ tags:
   - Gateway
   - Thingsboard
   - IoT
+  - Internet of Things
   - Python
   - ACROPOLIS
+  - MQTT
+  - Sensor network
+  - Wireless sensor network
+  - Sensor management
+  - Real-time Measurement
+  - Reproducible research
+  - Time series data
+  - Environmental sensing
+  - Software Updates
+  - Remote Configuration
+  - Remote Procedure Call
+  - Data persistance
+  - Distributed systems
 authors:
   - name: Lars Frölich
     orcid: 0009-0000-1579-7727
