@@ -181,3 +181,5 @@ Council (ERC) consolidator grant CoSense4Climate (grant no. 101089203, PI: Jia C
 # AI usage disclosure
 
 Generative AI tools were used to assist with language refinement, formatting, and editorial support during manuscript preparation, and to aid documentation of the codebase and online materials. All AI-assisted outputs were reviewed and approved by the authors.
+
+# References
