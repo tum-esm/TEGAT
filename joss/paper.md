@@ -4,22 +4,14 @@ tags:
   - Gateway
   - Thingsboard
   - IoT
-  - Internet of Things
   - Python
   - ACROPOLIS
   - MQTT
   - Sensor network
-  - Wireless sensor network
   - Sensor management
   - Real-time Measurement
-  - Reproducible research
-  - Time series data
-  - Environmental sensing
-  - Software Updates
-  - Remote Configuration
-  - Remote Procedure Call
-  - Data persistance
-  - Distributed systems
+  - Data persistence
+
 authors:
   - name: Lars Frölich
     orcid: 0009-0000-1579-7727
@@ -131,7 +123,7 @@ connectivity or requiring on-site intervention.
 In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
 and continues to communicate with the ThingsBoard IoT platform. 
 
-![Overview of the software architecture for on-device (green) and off-premise (blue) components. Purple boxes show the three main architecture components TEGAT (1), Controller Software (2), and the ThingsBoard IoT Platform (3). Arrows indicate the flow of data and actions components. Dashed boxes show local files that are used for configuration, management and data persistence. \label{fig:architecture}](figures/figure1.png)
+![Software architecture for on-device (green) and off-premise (blue) components. Purple boxes show the three main architecture components TEGAT (1), Controller Software (2), and the ThingsBoard IoT Platform (3). Dashed boxes show local files. \label{fig:architecture}](figures/figure1.png)
 
 ## Software Design and Implementation
 The TEGAT software is written in Python (@Python). It follows a modular design, encapsulating independent
@@ -196,4 +188,4 @@ Council (ERC) consolidator grant CoSense4Climate (grant no. 101089203, PI: Jia C
 
 # AI usage disclosure
 
-Generative AI tools were used to assist with language refinement, formatting, and editorial support during manuscript preparation, and to aid documentation of the codebase and online materials. All AI-assisted outputs were reviewed and approved by the authors to ensure accuracy, technical correctness, and integrity.
+Generative AI tools were used to assist with language refinement, formatting, and editorial support during manuscript preparation, and to aid documentation of the codebase and online materials. All AI-assisted outputs were reviewed and approved by the authors.
