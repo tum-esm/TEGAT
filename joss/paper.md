@@ -78,7 +78,7 @@ Although these challenges vary across deployments, they translate into a common 
 - Seamless addition and removal of devices from the network
 
 TEGAT addresses these infrastructure requirements to significantly reduce the engineering overhead associated 
-with deploying and maintaining sensor networks. This enables network operators to focus on application-specific instead. 
+with deploying and maintaining sensor networks. This enables network operators to focus on application-specific software instead. 
 TEGAT leverages the ThingsBoard IoT platform (@ThingsBoard), a robust open source software, which was chosen for its 
 maturity (10+yrs in development) and scalability.
 The flexible design of TEGAT, combined with the ThingsBoard IoT platform, enables users to configure customized 
@@ -125,10 +125,11 @@ Finally, the ThingsBoard platform (3) is deployed remotely and acts as a central
 management system. It is built to be highly scalable, both in the number of connected devices and in
 the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
 protocols.
-In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
-and continues to communicate with the ThingsBoard IoT platform. This design ensures that corrective actions, such as 
+Decoupling TEGAT from the Controller software ensures that corrective actions, such as 
 reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
 connectivity or requiring on-site intervention.
+In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
+and continues to communicate with the ThingsBoard IoT platform. 
 
 ![Overview of the software architecture for on-device (green) and off-premise (blue) components. Purple boxes show the three main architecture components TEGAT (1), Controller Software (2), and the ThingsBoard IoT Platform (3). Arrows indicate the flow of data and actions components. Dashed boxes show local files that are used for configuration, management and data persistence. \label{fig:architecture}](figures/figure1.png)
 
@@ -152,9 +153,9 @@ Besides managing the Controller Software and forwarding telemetry data, TEGAT pr
 - (2) Over-the-air (OTA) updates of the Controller Software
 - (3) Remote file management
 
-Remote Procedure Calls (1) enable users to invoke one of several predefined commands on TEGAT, such as remotely rebooting the 
-sensor device or restarting the controller software. This mechanism is primarily intended for operational control, diagnostics, 
-and maintenance tasks that must be executed on-demand without direct access to the device.
+Remote Procedure Calls (1) enable users to invoke one of several predefined commands on TEGAT, e.g. remotely rebooting the 
+sensor device. This mechanism is primarily intended for operational control and diagnostics that must be executed 
+on-demand without direct access to the device.
 The OTA update feature (2) enables users to remotely deploy new versions of the Controller Software to the device, for
 example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the Controller Software
 back to a previous version if needed. This feature leverages the Git (@git) version control system to manage the software
@@ -164,11 +165,10 @@ TEGAT also provides a mechanism for directly creating, reading, and writing file
 As Linux (@LinuxKernel) systems provide extensive access to operating system functionality through files, 
 this feature has a particularly wide range of applications. 
 Typical use cases are managing software configuration files for the Controller Software and configuring on-device drivers and 
-system daemons such as cron jobs.
-More technical details on TEGAT's functionality and implementation can be found in the TEGAT documentation[^1],
-which is built on Sphinx (@Sphinx).
-To make TEGAT's source code more robust, the TEGAT codebase is statically typed.
-Developers can perform local type checks using mypy (@mypy), which is also deployed as a continuous integration (CI) pipeline using
+system daemons.
+More technical details can be found in the documentation[^1], which is built on Sphinx (@Sphinx).
+To make TEGAT's source code more robust, its codebase is statically typed.
+Developers can perform local type checks using mypy (@mypy), which is also deployed as a continuous integration pipeline using
 GitHub actions.
 To enable integration testing of the system as a whole, a demo application is provided which enables developers to
 quickly deploy a fresh ThingsBoard server instance, the current version of TEGAT as well as an example 
