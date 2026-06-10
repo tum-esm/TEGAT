@@ -57,14 +57,14 @@ persistence, and remote management of sensor devices.
 It is designed to be robust against network and power outages, crashes, and other failures, thus reducing the risk of 
 data loss, system downtime, or the need for physical intervention.
 Application-specific and hardware interfacing logic is delegated to a user-provided controller software which is managed 
-and independently deployed by TEGAT, thus separating infrastructure and application logic.
+and deployed by TEGAT, thus separating infrastructure and application logic.
 
 # Statement of need
 
 Distributed sensor networks are a critical tool in scientific research and widely used across disciplines, enabling 
-long-term, continuous sensor measurements. While they vary in size and in the type of sensor hardware and data processing
+long-term, continuous sensor measurements. While they vary in the size and type of sensor hardware and data processing
 protocols used, such networks often face common infrastructure challenges:
-Physical access to sensor devices is often limited or costly. This can be additionally exacerbated by challenges in 
+Physical access to sensor devices is often limited or costly, which can be exacerbated by challenges in 
 scaling networks to large numbers of deployed sensors. Sensor networks often need to provide continuous
 measurements while operating unattended for extended periods of time, all while network connectivity and system 
 power can be intermittent or unreliable.
@@ -80,7 +80,7 @@ Although these challenges vary across deployments, they translate into a common 
 TEGAT addresses these infrastructure requirements to significantly reduce the engineering overhead associated 
 with deploying and maintaining sensor networks. This enables network operators to focus on application-specific instead. 
 TEGAT leverages the ThingsBoard IoT platform (@ThingsBoard), a robust open source software, which was chosen for its 
-maturity (10+yrs in development) and scalability, supporting large numbers of sensor devices.
+maturity (10+yrs in development) and scalability.
 The flexible design of TEGAT, combined with the ThingsBoard IoT platform, enables users to configure customized 
 sensor networks, seamlessly integrate additional sensors into existing networks, as well as making it possible to reuse 
 infrastructure across multiple research projects.
@@ -125,8 +125,6 @@ Finally, the ThingsBoard platform (3) is deployed remotely and acts as a central
 management system. It is built to be highly scalable, both in the number of connected devices and in
 the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
 protocols.
-This architecture was chosen specifically for maintaining remote control of sensor devices independently of 
-application- or hardware-specific software.
 In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
 and continues to communicate with the ThingsBoard IoT platform. This design ensures that corrective actions, such as 
 reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
@@ -145,33 +143,31 @@ TEGAT receives telemetry data from the Controller Software via a local sqlite da
 buffer messages between the two software components for additional fault tolerance. TEGAT then forwards the 
 telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional 
 redundancy (for example to backfill data gaps on-demand).
-TEGAT also manages the deployment of the Controller Software by directly interacting with the host system's
-Docker daemon: If the Controller Software's docker container is not running or has not provided a recent heartbeat, 
+TEGAT also manages the deployment of the Controller Software through the host system's Docker daemon: If the Controller 
+Software's docker container is not running or has not provided a recent heartbeat, 
 TEGAT attempts to start it using an exponential backoff strategy.
-Besides managing the Controller Software and forwarding telemetry data, TEGAT provides the following three 
-core features: 
+Besides managing the Controller Software and forwarding telemetry data, TEGAT provides the following core features: 
 
 - (1) Remote procedure calls (RPC)
 - (2) Over-the-air (OTA) updates of the Controller Software
 - (3) Remote file management
 
-Remote Procedure Calls (1) enable users to invoke one of several predefined commands on TEGAT using the RPC 
-mechanism built into the Thingsboard platform. This enables users to remotely reboot the sensor device, restart the controller 
-software, or execute arbitrary scripts on the device. This mechanism is primarily intended for operational control, diagnostics, 
+Remote Procedure Calls (1) enable users to invoke one of several predefined commands on TEGAT, such as remotely rebooting the 
+sensor device or restarting the controller software. This mechanism is primarily intended for operational control, diagnostics, 
 and maintenance tasks that must be executed on-demand without direct access to the device.
 The OTA update feature (2) enables users to remotely deploy new versions of the Controller Software to the device, for
 example to fix bugs or add new features. By the same mechanism, users can also easily downgrade the Controller Software
 back to a previous version if needed. This feature leverages the Git (@git) version control system to manage the software
 version history: Users can specify a specific commit hash or tag. TEGAT then builds a docker image based on the 
 corresponding source code.
-TEGAT also provides a mechanism for directly accessing files on the sensor device using the remote file management feature (3). 
-This feature enables users to create, read, and write files on the device. As Linux (@LinuxKernel) systems provide extensive access to operating system functionality through files, 
+TEGAT also provides a mechanism for directly creating, reading, and writing files on the sensor device using the remote file management feature (3). 
+As Linux (@LinuxKernel) systems provide extensive access to operating system functionality through files, 
 this feature has a particularly wide range of applications. 
 Typical use cases are managing software configuration files for the Controller Software and configuring on-device drivers and 
 system daemons such as cron jobs.
 More technical details on TEGAT's functionality and implementation can be found in the TEGAT documentation[^1],
 which is built on Sphinx (@Sphinx).
-To make TEGAT's source code more robust against potential errors, the TEGAT codebase is statically typed.
+To make TEGAT's source code more robust, the TEGAT codebase is statically typed.
 Developers can perform local type checks using mypy (@mypy), which is also deployed as a continuous integration (CI) pipeline using
 GitHub actions.
 To enable integration testing of the system as a whole, a demo application is provided which enables developers to
