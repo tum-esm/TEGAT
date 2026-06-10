@@ -91,9 +91,7 @@ building on top of such products are dependent on their future pricing and avail
 continuous funding.
 Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura (@EF-kura) 
 and Kapua (@EF-kapua) projects, as well as the Linux Foundation's Fledge (@fledge) and Kube Edge (@kubeedge) projects. In both cases, these unfortunately lack
-in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025)
-only covers basic data forwarding instead of natively integrating with a fleet management software. 
-Furthermore, it lacks separation between application and infrastructure logic, making software updates brittle. For example, 
+in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025) lacks separation between application and infrastructure logic, making software updates brittle. For example, 
 any crashes not covered by the test suite may result in permanent downtime requiring on-site fixes.
 
 # Software Architecture
