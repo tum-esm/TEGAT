@@ -62,11 +62,11 @@ and independently deployed by TEGAT, thus separating infrastructure and applicat
 # Statement of need
 
 Distributed sensor networks are a critical tool in scientific research and widely used across disciplines, enabling 
-long-term, continuous sensor measurements. While they vary in the sensor hardware, data acquisition and processing 
-protocols used, as well as in the number of deployed devices, such networks often face common infrastructure challenges:
+long-term, continuous sensor measurements. While they vary in size and in the type of sensor hardware and data processing
+protocols used, such networks often face common infrastructure challenges:
 Physical access to sensor devices is often limited or costly. This can be additionally exacerbated by challenges in 
 scaling networks to large numbers of deployed sensors. Sensor networks often need to provide continuous
-measurements while operating unattended for extended periods of time. At the same time, network connectivity and system 
+measurements while operating unattended for extended periods of time, all while network connectivity and system 
 power can be intermittent or unreliable.
 Although these challenges vary across deployments, they translate into a common set of infrastructure requirements:
 
@@ -78,10 +78,9 @@ Although these challenges vary across deployments, they translate into a common 
 - Seamless addition and removal of devices from the network
 
 TEGAT addresses these infrastructure requirements to significantly reduce the engineering overhead associated 
-with deploying and maintaining sensor networks. This enables network operators to focus on application-specific logic 
-while building on top of field-tested software. TEGAT leverages the ThingsBoard IoT platform (@ThingsBoard), a 
-robust open source software, which was chosen for its maturity (10+yrs in development) and scalability, supporting large 
-numbers of sensor devices.
+with deploying and maintaining sensor networks. This enables network operators to focus on application-specific instead. 
+TEGAT leverages the ThingsBoard IoT platform (@ThingsBoard), a robust open source software, which was chosen for its 
+maturity (10+yrs in development) and scalability, supporting large numbers of sensor devices.
 The flexible design of TEGAT, combined with the ThingsBoard IoT platform, enables users to configure customized 
 sensor networks, seamlessly integrate additional sensors into existing networks, as well as making it possible to reuse 
 infrastructure across multiple research projects.
@@ -89,17 +88,15 @@ infrastructure across multiple research projects.
 # State of the Field
 Other existing solutions already cover a variety of the features provided by the combination of TEGAT and ThingsBoard,
 though there are different tradeoffs and limitations to consider with each approach:
-Some solutions implement a semi-distributed architecture, where in addition to a central backend server, an on-site 
-central gateway server collects data from multiple connected sensor devices. Examples include thin-edge.io (@thin-edge) and ThingsBoard's
-own product Thingsboard Edge (@thingsboard-edge). These architectures benefit from sensor network layouts where many sensor devices share a local
-network, such as in large factory or office buildings, but face limitations when sensors are deployed individually in
-remote locations and don't form local networks. Furthermore, since the gateway servers are not designed to be co-deployed
-on the sensor devices themselves, they lack software update or remote management capabilities.
+Some solutions are designed around an on-site centralized "edge" server which collects data from multiple connected 
+sensor devices. Examples include thin-edge.io (@thin-edge) and ThingsBoard's own product Thingsboard Edge (@thingsboard-edge). 
+These architectures benefit from sensor network layouts where many sensor devices share a local network, such as large 
+factory or office buildings, but face limitations when sensors are deployed individually in remote locations.
 Some subset of our features can be covered with commercial solutions: For example, Amazon's AWS IoT (@AWS-IoT) and Microsoft
 Azure IoT Edge (@Azure-IoT-Edge) products are IoT cloud-platforms similar to ThingsBoard, and Balena Cloud (@BalenaCloud) offers reliable device 
 management and software updates of IoT device fleets similar to TEGAT's OTA and RPC functionality. However, projects
 building on top of such products are dependent on their future pricing and availability, and require
-continuous funding (which is often not feasible in scientific research projects).
+continuous funding.
 Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura (@EF-kura) 
 and Kapua (@EF-kapua) projects, as well as the Linux Foundation's Fledge (@fledge) and Kube Edge (@kubeedge) projects. In both cases, these unfortunately lack
 in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025)
@@ -129,8 +126,7 @@ management system. It is built to be highly scalable, both in the number of conn
 the amount of data received and stored. It is also highly customizable, supporting arbitrary sensor data formats and
 protocols.
 This architecture was chosen specifically for maintaining remote control of sensor devices independently of 
-application- or hardware-specific software. By decoupling TEGAT from the Controller Software, 
-updates can be deployed independently without compromising TEGAT's operation. 
+application- or hardware-specific software.
 In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
 and continues to communicate with the ThingsBoard IoT platform. This design ensures that corrective actions, such as 
 reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
@@ -142,9 +138,9 @@ connectivity or requiring on-site intervention.
 The TEGAT software is written in Python (@Python). It follows a modular design, encapsulating independent
 functionality such as logging, database access, or communication into separate software modules. During an 
 initial setup phase, communication is established with the ThingsBoard platform using MQTT via TLS, and the device is 
-provisioned in the ThingsBoard platform if needed. The software subsequently enters a steady-state main loop which contains 
-the remainder of the software's functionality. Each iteration of the main loop performs one task only. Higher priority
-tasks, such as processing incoming MQTT messages, are executed first. This design ensures operational reliability and efficiency.
+provisioned in the ThingsBoard platform if needed. The software subsequently enters a steady-state main loop which 
+performs one task per iteration, with higher priority tasks, such as processing incoming MQTT messages, executed first. 
+This design ensures operational reliability and efficiency.
 TEGAT receives telemetry data from the Controller Software via a local sqlite database (@SQLite), which is used to
 buffer messages between the two software components for additional fault tolerance. TEGAT then forwards the 
 telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional 
@@ -168,10 +164,10 @@ example to fix bugs or add new features. By the same mechanism, users can also e
 back to a previous version if needed. This feature leverages the Git (@git) version control system to manage the software
 version history: Users can specify a specific commit hash or tag. TEGAT then builds a docker image based on the 
 corresponding source code.
-TEGAT also provides a mechanism for directly accessing files on the sensor device's file system using the 
-remote file management feature (3). This feature enables users to create, read, and write files on the device by defining 
-shared device attributes using the Thingsboard platform. As Linux (@LinuxKernel) systems provide extensive access to operating system
-functionality through files, this feature has a particularly wide range of applications. Typical use cases are managing software configuration files for the Controller Software and configuring on-device drivers and 
+TEGAT also provides a mechanism for directly accessing files on the sensor device using the remote file management feature (3). 
+This feature enables users to create, read, and write files on the device. As Linux (@LinuxKernel) systems provide extensive access to operating system functionality through files, 
+this feature has a particularly wide range of applications. 
+Typical use cases are managing software configuration files for the Controller Software and configuring on-device drivers and 
 system daemons such as cron jobs.
 More technical details on TEGAT's functionality and implementation can be found in the TEGAT documentation[^1],
 which is built on Sphinx (@Sphinx).
