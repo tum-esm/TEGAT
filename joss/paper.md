@@ -37,12 +37,10 @@ bibliography: paper.bib
 
 # Summary
 
-TEGAT (Telemetry Edge Gateway) is a lightweight, general-purpose open source software built for managing and monitoring networks of IoT 
-devices. 
+TEGAT (Telemetry Edge Gateway) is a lightweight, general-purpose open source software built for managing and monitoring networks of IoT devices. 
 It is built to integrate with the ThingsBoard platform and was designed specifically for operating distributed 
 sensor networks for scientific research.
-Originally developed for and validated in the ACROPOLIS urban CO2 sensor network, it is network-agnostic and can be used with a 
-wide range of sensor hardware.
+Originally developed for and validated in the ACROPOLIS urban CO2 sensor network, it is network-agnostic and can be used with a wide range of sensor hardware.
 TEGAT offers a stable and reusable architectural baseline for distributed sensor networks, enabling users to 
 focus on application-specific logic while relying on a field-tested software solution for communication, data 
 persistence, and remote management of sensor devices.
@@ -62,7 +60,7 @@ measurements while operating unattended for extended periods of time, all while 
 power can be intermittent or unreliable.
 Although these challenges vary across deployments, they translate into a common set of infrastructure requirements:
 
-- Reliable bidirectional communication with a central platform
+- Reliable bidirectional communication
 - Local buffering of data during network outages
 - Remote configuration and maintenance capabilities
 - Safe remotely initiated software updates
@@ -90,8 +88,7 @@ management and software updates of IoT device fleets similar to TEGAT's OTA and 
 building on top of such products are dependent on their future pricing and availability, and require
 continuous funding.
 Finally, a combination of open source solutions can offer a similar feature set: Examples are the Eclipse Foundation's Kura (@EF-kura) 
-and Kapua (@EF-kapua) projects, as well as the Linux Foundation's Fledge (@fledge) and Kube Edge (@kubeedge) projects. In both cases, these unfortunately lack
-in some aspects we consider important, such as data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025) lacks separation between application and infrastructure logic, making software updates brittle. For example, 
+and Kapua (@EF-kapua) projects, as well as the Linux Foundation's Fledge (@fledge) and Kube Edge (@kubeedge) projects. In both cases, these unfortunately lack data visualization dashboards and software maturity. Finally, the Ivy project (@Makowski2025) doesn't separate application and infrastructure logic, making software updates brittle. For example, 
 any crashes not covered by the test suite may result in permanent downtime requiring on-site fixes.
 
 # Software Architecture
@@ -119,7 +116,7 @@ Decoupling TEGAT from the Controller software ensures that corrective actions, s
 reverting to a stable software version or adjusting configurations, can be performed remotely without risking system 
 connectivity or requiring on-site intervention.
 In case a newly deployed Controller Software version fails to start or contains errors, TEGAT remains operational
-and continues to communicate with the ThingsBoard IoT platform. 
+and continues to communicate with the ThingsBoard platform. 
 
 ![Software architecture for on-device (green) and off-premise (blue) components. Purple boxes show the three main architecture components TEGAT (1), Controller Software (2), and the ThingsBoard IoT Platform (3). Dashed boxes show local files. \label{fig:architecture}](figures/figure1.png)
 
@@ -133,7 +130,7 @@ This design ensures operational reliability and efficiency.
 TEGAT receives telemetry data from the Controller Software via a local sqlite database (@SQLite), which is used to
 buffer messages between the two software components for additional fault tolerance. TEGAT then forwards the 
 telemetry data to the ThingsBoard platform via MQTT, and stores a copy of the data in a local database for additional 
-redundancy (for example to backfill data gaps on-demand).
+redundancy (e.g. to backfill data gaps on-demand).
 TEGAT also manages the deployment of the Controller Software through the host system's Docker daemon: If the Controller 
 Software's docker container is not running or has not provided a recent heartbeat, 
 TEGAT attempts to start it using an exponential backoff strategy.
@@ -143,7 +140,7 @@ Besides managing the Controller Software and forwarding telemetry data, TEGAT pr
 - (2) Over-the-air (OTA) updates of the Controller Software
 - (3) Remote file management
 
-Remote Procedure Calls (1) enable users to invoke one of several predefined commands on TEGAT, e.g. remotely rebooting the 
+RPCs (1) enable users to invoke one of several predefined commands on TEGAT, e.g. remotely rebooting the 
 sensor device. This mechanism is primarily intended for operational control and diagnostics that must be executed 
 on-demand without direct access to the device.
 The OTA update feature (2) enables users to remotely deploy new versions of the Controller Software to the device, for
@@ -160,10 +157,7 @@ More technical details can be found in the documentation[^1], which is built on 
 To make TEGAT's source code more robust, its codebase is statically typed.
 Developers can perform local type checks using mypy (@mypy), which is also deployed as a continuous integration pipeline using
 GitHub actions.
-To enable integration testing of the system as a whole, a demo application is provided which enables developers to
-quickly deploy a fresh ThingsBoard server instance, the current version of TEGAT as well as an example 
-implementation of the Controller Software. This example implementation of the Controller Software also serves as a 
-starting point for developers to copy and modify for their own projects.
+For integration testing, a demo application is provided which deploys a ThingsBoard server alongside TEGAT and an example implementation of the Controller Software. This example implementation also serves as a starting point for developers.
 
 
 # Research impact statement
@@ -179,7 +173,7 @@ LF, PA, designed the software architecture, implemented the software, wrote docu
 
 # Acknowledgements and funding
 
-This work has been funded by the ICOS PAUL project: PAUL, Pilot Applications in Urban Landscapes – Towards integrated 
+This work has been funded by: PAUL, Pilot Applications in Urban Landscapes – Towards integrated 
 city observatories for greenhouse gases (ICOS Cities), funded by the European Union's Horizon 2020 Research and Innovation 
 Programme (grant agreement no. 101037319). Furthermore, the work is partly supported by the HORIZON EUROPE European Research 
 Council (ERC) consolidator grant CoSense4Climate (grant no. 101089203, PI: Jia Chen).
