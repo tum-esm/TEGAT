@@ -63,7 +63,7 @@ components is available in the documentation:
 ## Development and Type Checking
 
 Production-level setup and installation steps are described in the
-[Installation Guide](https://tum-esm.github.io/TEGAT/getting-started).  
+[Installation Guide](https://tum-esm.github.io/TEGAT/getting-started/0_index.html#).  
 The following steps are intended for local development.
 
 Install development dependencies:
