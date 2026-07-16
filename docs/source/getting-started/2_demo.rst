@@ -136,7 +136,7 @@ Assign the self-provisioning credentials to the "thermostat" device profile:
 
 After this, the demo TEGAT instance self-provisions and starts sending simulated data.
 
-Verify TEGAT device in Thingsboard GUI
+Verify TEGAT device in ThingsBoard GUI
 ---------------------------------------
 Check the ThingsBoard GUI's "devices" page and look out for a newly registered device.
 This device is the locally deployed instance of TEGAT, sending simulated data via the example controller software.
@@ -199,7 +199,7 @@ The demo can mirror a controller's configuration file via device attributes.
 7. Check the content of the client attribute `FILE_READ_controller_config` which should reflect the file's content
 
 
-Optional [Existing Thingsboard]: Connect TEGAT to an existing ThingsBoard instance
+Optional [Existing ThingsBoard]: Connect TEGAT to an existing ThingsBoard instance
 --------------------------------------------------------
 If you already have ThingsBoard running elsewhere, use the smaller compose file:
 
