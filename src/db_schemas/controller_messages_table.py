@@ -26,7 +26,7 @@ Notes
 from modules import sqlite
 
 # SQL statement to create the controller messages table.
-CREATE_CONTROLLER_MESSAGES_TABLE_QUERY: str = """
+CREATE_CONTROLLER_MESSAGES_TABLE_QUERY: str = f"""
     CREATE TABLE IF NOT EXISTS {sqlite.SqliteTables.CONTROLLER_MESSAGES.value} (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         type text,
