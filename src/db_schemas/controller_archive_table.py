@@ -28,7 +28,7 @@ Notes
 """
 
 # SQL statement to create the controller message archive table.
-CREATE_CONTROLLER_ARCHIVE_TABLE_QUERY: str = """
+CREATE_CONTROLLER_ARCHIVE_TABLE_QUERY: str = f"""
 CREATE TABLE IF NOT EXISTS controller_archive (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp_ms INTEGER,
@@ -37,6 +37,6 @@ CREATE TABLE IF NOT EXISTS controller_archive (
 """
 
  # SQL statement to create an index for efficient time-range lookups.
-CREATE_CONTROLLER_ARCHIVE_INDEX_QUERY: str = """
+CREATE_CONTROLLER_ARCHIVE_INDEX_QUERY: str = f"""
 CREATE INDEX IF NOT EXISTS controller_archive_ts_index on controller_archive (timestamp_ms);
 """
