@@ -60,6 +60,12 @@ components is available in the documentation:
 - [Remote Procedure Calls](https://tum-esm.github.io/TEGAT/user-guide/remote-procedure-calls)
 
 
+## Quick Start
+
+To quickly get started with a locally running DEMO application of TEGAT for testing purposes, follow the instructions
+in the "demo"-section of the docs [here](https://tum-esm.github.io/TEGAT/getting-started/2_demo.html).
+
+
 ## Development and Type Checking
 
 Production-level setup and installation steps are described in the
