@@ -1,3 +1,5 @@
+.. _demo:
+
 Demo
 ====
 
@@ -31,7 +33,6 @@ MacOS (via Homebrew)
 
     brew install --cask docker-desktop
     brew install docker-compose
-
 
 Linux
 ~~~~~
@@ -105,10 +106,14 @@ To run the demo once it has been initialized:
 
     docker compose -f docker-compose-thingsboard.yml up
 
+Access the local ThingsBoard deployment
+-------------------------------------
+
 Access ThingsBoard GUI at `http://localhost:8080/ <http://localhost:8080/>`_ and sign in with:
 
 - user: `tenant@thingsboard.org`
 - password: `tenant`
+
 
 Enable device self-provisioning
 -------------------------------
@@ -129,10 +134,16 @@ Assign the self-provisioning credentials to the "thermostat" device profile:
     :alt: Self-provisioning credentials
 
 
-After this, the demo gateway self-provisions and starts sending simulated data.
+After this, the demo TEGAT instance self-provisions and starts sending simulated data.
+
+Verify TEGAT device in Thingsboard GUI
+---------------------------------------
+Check the ThingsBoard GUI's "devices" page and look out for a newly registered device.
+This device is the locally deployed instance of TEGAT, sending simulated data via the example controller software.
 
 Import the example dashboard
 ----------------------------
+To better visualize the incoming data from the demo device:
 1. Go to Dashboards -> "+" -> Import
 2. Import `demo/example_dashboard.json`
 
@@ -144,6 +155,8 @@ Import the example dashboard
 
 .. image:: scr_edit_alias.png
     :alt: Edit dashboard device alias
+
+4. Verify that the dashboard now displays simulated temperature data from the TEGAT instance
 
 Push and verify a controller config file
 ----------------------------------------
@@ -185,7 +198,8 @@ The demo can mirror a controller's configuration file via device attributes.
 6. Modify the local config file and trigger the "Exit" RPC command via the button on the "Example Sensor" dashboard
 7. Check the content of the client attribute `FILE_READ_controller_config` which should reflect the file's content
 
-Connect the gateway to an existing ThingsBoard instance
+
+Optional [Existing Thingsboard]: Connect TEGAT to an existing ThingsBoard instance
 --------------------------------------------------------
 If you already have ThingsBoard running elsewhere, use the smaller compose file:
 
