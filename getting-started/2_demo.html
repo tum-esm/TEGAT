@@ -84,7 +84,7 @@
           <div class="body" role="main">
             
   <section id="demo">
-<h1>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h1>
+<span id="id1"></span><h1>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h1>
 <p>This docker-based demo deployment runs a local ThingsBoard instance together with TEGAT and a simulated controller.
 It is meant for showcasing TEGAT’s features in an easy to set up example environment.</p>
 <section id="what-the-demo-includes">
@@ -147,7 +147,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>version
 </div>
 </section>
 <section id="prepare-the-demo-data-directory">
-<span id="id1"></span><h2>Prepare the demo data directory<a class="headerlink" href="#prepare-the-demo-data-directory" title="Link to this heading">¶</a></h2>
+<span id="id2"></span><h2>Prepare the demo data directory<a class="headerlink" href="#prepare-the-demo-data-directory" title="Link to this heading">¶</a></h2>
 <p>Create a local data folder and point the demo to it:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>demo
 mkdir<span class="w"> </span>-p<span class="w"> </span>data/tegat
@@ -175,6 +175,9 @@ Installation finished successfully!
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose-thingsboard.yml<span class="w"> </span>up
 </pre></div>
 </div>
+</section>
+<section id="access-the-local-thingsboard-deployment">
+<h2>Access the local ThingsBoard deployment<a class="headerlink" href="#access-the-local-thingsboard-deployment" title="Link to this heading">¶</a></h2>
 <p>Access ThingsBoard GUI at <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a> and sign in with:</p>
 <ul class="simple">
 <li><p>user: <cite>tenant&#64;thingsboard.org</cite></p></li>
@@ -196,14 +199,18 @@ Installation finished successfully!
 <li><p>Save the profile (“apply changes”)</p></li>
 </ol>
 <img alt="Self-provisioning credentials" src="../_images/scr_self_provisioning_credentials.png" />
-<p>After this, the demo gateway self-provisions and starts sending simulated data.</p>
+<p>After this, the demo TEGAT instance self-provisions and starts sending simulated data.</p>
+</section>
+<section id="verify-tegat-device-in-thingsboard-gui">
+<h2>Verify TEGAT device in ThingsBoard GUI<a class="headerlink" href="#verify-tegat-device-in-thingsboard-gui" title="Link to this heading">¶</a></h2>
+<p>Check the ThingsBoard GUI’s “devices” page and look out for a newly registered device.
+This device is the locally deployed instance of TEGAT, sending simulated data via the example controller software.</p>
 </section>
 <section id="import-the-example-dashboard">
 <h2>Import the example dashboard<a class="headerlink" href="#import-the-example-dashboard" title="Link to this heading">¶</a></h2>
-<ol class="arabic simple">
-<li><p>Go to Dashboards -&gt; “+” -&gt; Import</p></li>
-<li><p>Import <cite>demo/example_dashboard.json</cite></p></li>
-</ol>
+<p>To better visualize the incoming data from the demo device:
+1. Go to Dashboards -&gt; “+” -&gt; Import
+2. Import <cite>demo/example_dashboard.json</cite></p>
 <img alt="Import new example dashboard" src="../_images/scr_import_dashboard.png" />
 <ol class="arabic simple" start="3">
 <li><dl class="simple">
@@ -215,6 +222,9 @@ Installation finished successfully!
 </li>
 </ol>
 <img alt="Edit dashboard device alias" src="../_images/scr_edit_alias.png" />
+<ol class="arabic simple" start="4">
+<li><p>Verify that the dashboard now displays simulated temperature data from the TEGAT instance</p></li>
+</ol>
 </section>
 <section id="push-and-verify-a-controller-config-file">
 <h2>Push and verify a controller config file<a class="headerlink" href="#push-and-verify-a-controller-config-file" title="Link to this heading">¶</a></h2>
@@ -253,8 +263,8 @@ Installation finished successfully!
 <li><p>Check the content of the client attribute <cite>FILE_READ_controller_config</cite> which should reflect the file’s content</p></li>
 </ol>
 </section>
-<section id="connect-the-gateway-to-an-existing-thingsboard-instance">
-<h2>Connect the gateway to an existing ThingsBoard instance<a class="headerlink" href="#connect-the-gateway-to-an-existing-thingsboard-instance" title="Link to this heading">¶</a></h2>
+<section id="optional-existing-thingsboard-connect-tegat-to-an-existing-thingsboard-instance">
+<h2>Optional [Existing ThingsBoard]: Connect TEGAT to an existing ThingsBoard instance<a class="headerlink" href="#optional-existing-thingsboard-connect-tegat-to-an-existing-thingsboard-instance" title="Link to this heading">¶</a></h2>
 <p>If you already have ThingsBoard running elsewhere, use the smaller compose file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>up
 </pre></div>

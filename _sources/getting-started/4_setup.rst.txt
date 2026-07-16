@@ -2,7 +2,9 @@
 Setup
 =====
 
-How to set up TEGAT on an IoT device once it has been installed.
+This page documents how to set up a production TEGAT instance on an IoT edge device in order to connect to an existing
+ThingsBoard server deployment.
+If you are looking to simply test-deploy TEGAT locally, take a look at the TEGAT :ref:`demo` docs.
 
 Docker
 ------
